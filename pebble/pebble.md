@@ -13,9 +13,6 @@ title: "Pebble Templates"
 >
 > <input readonly value="\{\{now()\}\}"></input>
 >
-> `{{now()}}`
->
-> `\{{now()}\}`
 >
 > \{\{now()\}\}
 >
