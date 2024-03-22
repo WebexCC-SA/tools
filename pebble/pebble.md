@@ -1,12 +1,13 @@
-<style>
-    textarea{
-        width:100%;
-    }
-</style>
-
 ---
 title: "Pebble Templates"
 ---
+
+<style>
+    textarea{
+        width:75%;
+    }
+</style>
+
 
 
 # Time
