@@ -7,4 +7,6 @@ title: "Pebble Templates"
 
 > Return the current date in UTC
 >
-> <textarea readonly>\{\{now()\}\}</textarea>
+> <textarea readonly>"{{now()}}"</textarea>
+>
+> <textarea readonly></textarea>
