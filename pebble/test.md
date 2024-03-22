@@ -7,7 +7,7 @@ title: "Pebble Templates"
         width:75%;
     }
 </style>
-<script type="module" src="dist/gql-classroom/gql-classroom.esm.js"></script>
+<script type="module" src="https://kevsimps.github.io/gql/dist/gql-classroom/gql-classroom.esm.js"></script>
 <wxcc-time></wxcc-time>
 
 # Time
