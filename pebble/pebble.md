@@ -13,4 +13,4 @@ title: "Pebble Templates"
 >
 
 
-<script> () => { Array.from(document.querySelectorAll("textarea")).forEach((element) => element.value = element.value.replaceAll("\\",""))}</script>
+<script> function() { Array.from(document.querySelectorAll("textarea")).forEach((element) => element.value = element.value.replaceAll("\\",""))}()</script>
