@@ -7,12 +7,10 @@ title: "Pebble Templates"
 
 > Return the current date in UTC
 >
-> <textarea readonly id="1">{||{now()}||}</textarea><bk>
+> <textarea readonly id="1">\{\{now()\}\}</textarea><br>
 >
-> <textarea readonly id="2">|{|{now()|}|}</textarea>
+> <textarea readonly id="2">\{\{now()\}\}</textarea>
 >
-> <input readonly value="\{\{now()\}\}"></input>
->
->
-> \{\{now()\}\}
->
+
+
+<script> () => { Array.from(document.querySelectorAll("textarea")).forEach((element) => element.value = element.value.replaceAll("\\",""))}</script>
