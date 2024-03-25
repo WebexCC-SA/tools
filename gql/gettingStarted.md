@@ -42,3 +42,4 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
 
 
 
+<script> (function() {Array.from(document.querySelectorAll("textarea")).forEach((element) => {element.value = element.value.replaceAll("\\",""); console.log(element.value)})})()</script>
