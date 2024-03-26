@@ -9,10 +9,10 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
 - You will need to have an administrator or supervisor account on the tenant from which you will accessing data. (**You cannot use and external or partner account for these labs**)
 - You will need the ORG ID of the tenant from which you will accessing data.
 - You watched the introduction video so that you understand how to navigate the tools in the lab.
-- You have created a new profile in your browser to access the labs"
-    >  [For Firefox](https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles){:target="_blank"}
+- You have created a new profile in your browser to access the labs
+    >  [For Firefox](https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles)\{:target="_blank"\}
     >
-    >  [For Chrome](https://support.google.com/chrome/answer/2364824){:target="_blank"}
+    >  [For Chrome](https://support.google.com/chrome/answer/2364824)\{:target="_blank"\}
 
 ## Lab Objective
 - Get your Bearer token set as a global environment variable in Altair.
@@ -37,10 +37,36 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
    > <textarea style="width: 75%">https://api.wxcc-us1.cisco.com/search?orgId=\<orgID\></textarea>
 2. Click the Docs button (might need to toggle the guide tab)
 3. You should see the word Query in the third pane, click it.
-4. Click task
-5. 
+4. Click task and observe the available arguments and fields.
 
+## Your first query
+1. Using the time tool, select from "1 week ago" to "Now"
 
+<textarea cols="70" rows="25" >\{
+  task(
+    from: "_____"
+    to: "_____"
+    timeComparator: createdTime
+    aggregations: [\{ field: "id", type: count, name: "calls" \}]
+    aggregationInterval: \{ interval: DAILY \}
+  ) \{
+    tasks \{
+      intervalStartTime(sort: asc)
+      aggregation \{
+        name
+        value
+      \}
+    \}
+    pageInfo \{
+      endCursor
+      hasNextPage
+    \}
+    intervalInfo \{
+      interval
+      timezone
+    \}
+  \}
+\}</textarea>
 
 
 
