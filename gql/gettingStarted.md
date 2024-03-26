@@ -36,10 +36,17 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
 1. Copy the URL into Altair, replacing `<orgID>` with your Org ID
    > <textarea style="width: 75%">https://api.wxcc-us1.cisco.com/search?orgId=\<orgID\></textarea>
 2. Click the Docs button (might need to toggle the guide tab)
-3. You should see teh word Query in the third pane, click it.
+3. You should see the word Query in the third pane, click it.
 4. Click task
 5. 
 
 
 
-<script> (function() {Array.from(document.querySelectorAll("textarea")).forEach((element) => {element.value = element.value.replaceAll("\\",""); console.log(element.value)})})()</script>
+
+
+
+
+
+<script>slash()</script>
+
+<!-- <script> (function() {Array.from(document.querySelectorAll("textarea")).forEach((element) => {element.value = element.value.replaceAll("\\",""); console.log(element.value)})})()</script> -->
