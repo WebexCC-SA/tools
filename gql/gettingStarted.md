@@ -66,8 +66,7 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
       timezone
     \}
     \}
-    \}
-</textarea>
+    \}</textarea>
 
 
 
