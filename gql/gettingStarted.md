@@ -34,7 +34,7 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
 
 ## Retrieve introspection information
 1. Copy the URL into Altair, replacing `<orgID>` with your Org ID
-   > <textarea style="width: 75%">https://api.wxcc-us1.cisco.com/search?orgId=\<orgID\></textarea>
+   > <textarea spellcheck="false" style="width: 75%">https://api.wxcc-us1.cisco.com/search?orgId=\<orgID\></textarea>
 2. Click the Docs button (might need to toggle the guide tab)
 3. You should see the word Query in the third pane, click it.
 4. Click task and observe the available arguments and fields.
@@ -42,7 +42,7 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
 ## Your first query
 1. Using the time tool, select from "1 week ago" to "Now"
 
-    > <textarea cols="70" rows="25" >\{
+    > <textarea spellcheck="false" cols="70" rows="25" >\{
   task(
     from: "_____"
     to: "_____"
@@ -65,9 +65,15 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
       interval
       timezone
     \}
-  \}
-\}</textarea>
+    \}
+    \}
+</textarea>
 
+
+
+
+
+### Knowledge Check
 
 
 
