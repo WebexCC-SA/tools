@@ -10,9 +10,9 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
 - You will need the ORG ID of the tenant from which you will accessing data.
 - You watched the introduction video so that you understand how to navigate the tools in the lab.
 - You have created a new profile in your browser to access the labs
-    >  [For Firefox](https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles)\{:target="_blank"\}
+    >  [For Firefox](https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles){:target="_blank"}
     >
-    >  [For Chrome](https://support.google.com/chrome/answer/2364824)\{:target="_blank"\}
+    >  [For Chrome](https://support.google.com/chrome/answer/2364824){:target="_blank"}
 
 ## Lab Objective
 - Get your Bearer token set as a global environment variable in Altair.
