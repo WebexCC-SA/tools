@@ -13,6 +13,7 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
     >  [For Firefox](https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles){:target="_blank"}
     >
     >  [For Chrome](https://support.google.com/chrome/answer/2364824){:target="_blank"}
+- While not required, it is a good idea to use a tenant which has had some traffic so that you have data to query
 
 ## Lab Objective
 - Get your Bearer token set as a global environment variable in Altair.
@@ -68,13 +69,25 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
     \}
     \}</textarea>
 
-
-
+2. Copy an intervalStartTime value to your clipboard
+3. Open the time tool and switch to the Lookup tab
+4. Paste the value and click Convert
+   > <details> <summary>What is that timestamp telling you?</summary>
+    > The day of the week
+    > </details>
+    > <details> <summary>What time zone is the timestamp in?</summary>
+    > <details> <summary>Hint: Scroll down in the results to the interval info  </summary>
+    > UTC
+    > </details>
+    > 
+    > </details>
+ 
+5. Update the aggregation interval to be in your preferred time zone 
 
 
 ### Knowledge Check
 
-
+1. 
 
 
 
