@@ -82,12 +82,11 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
     > 
     > </details>
  
-5. Update the aggregation interval to be in your preferred time zone 
-
-
-### Knowledge Check
-
-1. 
+5. Update the aggregation interval to be in your preferred time zone by adding the timezone field of the aggregationInterval argument. 
+    > Example:
+    > <textarea spellcheck="false" cols="70">aggregationInterval: \{ interval: DAILY, timezone:"America/New_York" \}</textarea>
+    > You can find a list of time zone [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones){:target="_blank"}
+    
 
 
 
