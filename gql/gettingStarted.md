@@ -42,7 +42,7 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
 ## Your first query
 1. Using the time tool, select from "1 week ago" to "Now"
 
-<textarea cols="70" rows="25" >\{
+    > <textarea cols="70" rows="25" >\{
   task(
     from: "_____"
     to: "_____"
