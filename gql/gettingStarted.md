@@ -3,7 +3,7 @@ Title: "Getting Started"
 ---
 
 # Introduction
-In this group of labs we will be exploring how to use Graph QL to get data from the Webex Contact Center's search API.
+In this group of labs we will be exploring how to use GraphQL to get data from the Webex Contact Center's search API.
 
 ## Pre-requisites
 - You will need to have an administrator or supervisor account on the tenant from which you will accessing data. (**You cannot use and external or partner account for these labs**)
@@ -35,7 +35,7 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
 
 ## Retrieve introspection information
 1. Copy the URL into Altair, replacing `<orgID>` with your Org ID
-   > <textarea spellcheck="false" style="width: 75%">https://api.wxcc-us1.cisco.com/search?orgId=\<orgID\></textarea>
+   > <textarea spellcheck="false" cols="75">https://api.wxcc-us1.cisco.com/search?orgId=\<orgID\></textarea>
 2. Click the Docs button (might need to toggle the guide tab)
 3. You should see the word Query in the third pane, click it.
 4. Click task and observe the available arguments and fields.
@@ -86,7 +86,8 @@ In this group of labs we will be exploring how to use Graph QL to get data from 
     > Example:
     > <textarea spellcheck="false" cols="70">aggregationInterval: \{ interval: DAILY, timezone:"America/New_York" \}</textarea>
     > You can find a list of time zone [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones){:target="_blank"}
-    
 
+6. Note that the daily intervals now begins at 0:00 in the set time zone.
 
+### Click Next to continue to the next lesson
 
