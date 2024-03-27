@@ -37,25 +37,17 @@ In this lab we will be exploring the data available our query from the previous 
    > pagination
 6. You can delete all of the lines in the has section (line 84-150) as they are not needed
 7. Comment out or delete the following fields from the fields section:
-   > integerGlobalVariables
-   >
-   > stringGlobalVariables
-   >
-   > longGlobalVariables
-   >
-   > doubleGlobalVariables
-   >
-   > booleanGlobalVariables
-   > 
-   > intervalStartTime
-   >
-   > aggregation
+    - integerGlobalVariables
+    - stringGlobalVariables   
+    - longGlobalVariables   
+    - doubleGlobalVariables   
+    - booleanGlobalVariables    
+    - intervalStartTime   
+    - aggregation
 
 8. Hover your mouse over the fields which have lines underneath them
-   > If the field is deprecated, delete it or comment it out 
-   >
-   > If the field is not deprecated, place your cursor after the field lane and use teh keyboard shortcut ctrl + shift + enter
-   >  
+   - If the field is deprecated, delete it or comment it out 
+   - If the field is not deprecated, place your cursor after the field lane and use teh keyboard shortcut ctrl + shift + enter  
 9. While in the query pane and use the keyboard shortcut ctrl+F to bring up the find and replace dialog box
 10. In the find box paste `(sort: asc)`, put nothing in the replace box, and click replace all.
 11. Using the time tool, set the from and to fields for 1 day (this query will be bringing back a lot of data)
