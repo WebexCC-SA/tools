@@ -1,6 +1,16 @@
 ---
 title: "Placeholder"
 ---
+<style>
+    button{
+        border-radius: 30px
+    }
+    button:hover{
+        background: #2196F3;
+        color:white;
+    }
+</style>
+
 # Introduction
 This is a placeholder to show navigation 
 
