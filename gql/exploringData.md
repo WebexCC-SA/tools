@@ -19,10 +19,12 @@ In this lab we will be exploring the data available our query from the previous 
 <button onclick="vidPop('d2c7b761-9291-40ec-b76f-3cb25c657c83')">Launch Video</button> 
 
 1.  <details><summary>Click + Add new in the top bar of Altair </summary>
-     ![alt text](image.png)
-         </details>
-
-3.  Docs Panel 
+         <img src="https://webexcc-sa.github.io/tools/gql/images/addNew.png"/>
+         </details> 
+2.  Open the Docs panel
+3.  Click Query
+4.  <details><summary>Next to task, click ADD QUERY</summary>
+    <img src="https://webexcc-sa.github.io/tools/gql/images/addTaskQuery.gif"/></details>
 
 
 
