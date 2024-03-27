@@ -35,7 +35,7 @@ In this group of labs we will be exploring how to use GraphQL to get data from t
 
 ## Retrieve introspection information
 1. Copy the URL into Altair, replacing `<orgID>` with your Org ID
-   > <textarea spellcheck="false" cols="75">https://api.wxcc-us1.cisco.com/search?orgId=\<orgID\></textarea>
+   > <textarea spellcheck="false" cols="70">https://api.wxcc-us1.cisco.com/search?orgId=\<orgID\></textarea>
 2. Click the Docs button (might need to toggle the guide tab)
 3. You should see the word Query in the third pane, click it.
 4. Click task and observe the available arguments and fields.
