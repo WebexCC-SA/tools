@@ -24,7 +24,7 @@ In this lab we will be exploring the data available our query from the previous 
 2.  Open the Docs panel
 3.  Click Query
 4.  <details><summary>Next to task, click ADD QUERY</summary>
-    <img src="https://webexcc-sa.github.io/tools/gql/images/addTaskQuery.gif"/></details>
+    <img style="width:75%" src="https://webexcc-sa.github.io/tools/gql/images/addTaskQuery.gif"/></details>
 
 
 
