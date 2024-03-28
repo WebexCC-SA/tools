@@ -2,7 +2,7 @@
 title: "Exploring the Data"
 ---
 
-<style>button{border-radius:30px;}button:hover{background: #2196F3;color:white;}</style>
+<style>.btn{border-radius:30px;}button:hover{background: #2196F3;color:white;}</style>
 
 # Introduction
 In this lab we will be exploring the data available our query from the previous lab.
@@ -16,7 +16,7 @@ In this lab we will be exploring the data available our query from the previous 
 - Observer the data values available along with their definitions 
   
 ## Add Query from Docs
-<button onclick="vidPop('d2c7b761-9291-40ec-b76f-3cb25c657c83')">Launch Video</button> 
+<button class="btn" onclick="vidPop('d2c7b761-9291-40ec-b76f-3cb25c657c83')">Launch Video</button> 
 
 1.  <details><summary>Click + Add new in the top bar of Altair </summary>
          <img src="https://webexcc-sa.github.io/tools/gql/images/addNew.png"/>
