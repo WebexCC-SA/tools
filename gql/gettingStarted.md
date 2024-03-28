@@ -6,7 +6,7 @@ Title: "Getting Started"
 In this group of labs we will be exploring how to use GraphQL to get data from the Webex Contact Center's search API.
 
 ## Pre-requisites
-- You will need to have an administrator or supervisor account on the tenant from which you will accessing data. (**You cannot use and external or partner account for these labs**)
+- You will need to have an administrator or supervisor account on the tenant from which you will accessing data. (**You cannot use an external or partner account for these labs**)
 - You will need the ORG ID of the tenant from which you will accessing data.
 - You watched the introduction video so that you understand how to navigate the tools in the lab.
 - You have created a new profile in your browser to access the labs
