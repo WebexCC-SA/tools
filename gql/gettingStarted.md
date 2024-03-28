@@ -1,6 +1,8 @@
 ---
-Title: "Getting Started"
+title: "Getting Started"
 ---
+
+
 
 # Introduction
 In this group of labs we will be exploring how to use GraphQL to get data from the Webex Contact Center's search API.
