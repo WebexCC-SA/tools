@@ -25,7 +25,7 @@ In this lab we will be exploring the data available our query from the previous 
 3.  Click Query
 4.  <details><summary>Next to task, click ADD QUERY</summary>
     <img style="width:75%" src="https://webexcc-sa.github.io/tools/gql/images/addTaskQuery.gif"/></details>
-5. In the query window use the keyboard shortcut ctrl+/ to comment out the following fields in the arguments section:
+5. In the query window use the keyboard shortcut `ctrl + /` to comment out the following fields in the arguments section:
    - filter
    - aggregation   
    - aggregations   
@@ -41,13 +41,33 @@ In this lab we will be exploring the data available our query from the previous 
     - intervalStartTime   
     - aggregation
 
-8. Hover your mouse over the fields which have lines underneath them
+8. Hover over owner in the fields list of the query pane
+
+   <img src="https://webexcc-sa.github.io/tools/gql/images/ownerField.png"/>
+10. In the Docs pane, click on task to expand the documentation
+11. Scroll down to Fields and click on tasks
+    - Note that this lists all of the available fields in the Task object
+12. Scroll down to owner
+    - Note the type of data is AgentInfo
+13. Click on owner
+    - You can now see the AgentInfo fields
+14. Next to owner in the query pane, type open curly braces (`\{`), press enter, and type `id`
+    - Note that you should have gotten the option to auto complete by pressing enter 
+15. Fill in the rest of the field names:
+    - name
+    - signInId
+    - sessionId
+    - phoneNumber
+    - channelId
+16. Work your way down the rest of the fields which have lines underneath them and hover your mouse over the fields
    - If the field is deprecated, delete it or comment it out 
-   - If the field is not deprecated, place your cursor after the field lane and use teh keyboard shortcut ctrl + shift + enter  
-9. While in the query pane and use the keyboard shortcut ctrl+F to bring up the find and replace dialog box
-10. In the find box paste `(sort: asc)`, put nothing in the replace box, and click replace all.
-11. Using the time tool, set the from and to fields for 1 day (this query will be bringing back a lot of data)
-12. 
+   - If the field is not deprecated, place your cursor after the field lane and use the keyboard shortcut `ctrl + shift + enter ` 
+17. While in the query pane and use the keyboard shortcut `ctrl + f` to bring up the find and replace dialog box
+18. In the find box paste `(sort: asc)`, put nothing in the replace box, and click replace all.
+19. Using the time tool, set the from and to fields for 1 day (this query will be bringing back a lot of data)
+
+## Add a filter
+
 
 
 
