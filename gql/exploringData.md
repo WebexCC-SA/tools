@@ -26,15 +26,11 @@ In this lab we will be exploring the data available our query from the previous 
 4.  <details><summary>Next to task, click ADD QUERY</summary>
     <img style="width:75%" src="https://webexcc-sa.github.io/tools/gql/images/addTaskQuery.gif"/></details>
 5. In the query window use the keyboard shortcut ctrl+/ to comment out the following fields in the arguments section:
-   > filter
-   >
-   > aggregation
-   >
-   > aggregations
-   >
-   > aggregationInterval
-   >
-   > pagination
+   - filter
+   - aggregation   
+   - aggregations   
+   - aggregationInterval   
+   - pagination
 6. You can delete all of the lines in the has section (line 84-150) as they are not needed
 7. Comment out or delete the following fields from the fields section:
     - integerGlobalVariables
