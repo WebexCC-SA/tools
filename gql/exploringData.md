@@ -2,7 +2,7 @@
 title: "Exploring the Data"
 ---
 
-<style>.btn{border-radius:30px;}button:hover{background: #2196F3;color:white;}</style>
+<style>.btn{border-radius:30px;padding:5px 10px }.btn:hover{background: #2196F3;color:white;}</style>
 
 # Introduction
 In this lab we will be exploring the data available our query from the previous lab.
@@ -51,7 +51,7 @@ In this lab we will be exploring the data available our query from the previous 
     - Note the type of data is AgentInfo
 13. Click on owner
     - You can now see the AgentInfo fields
-14. Next to owner in the query pane, type open curly braces (`\{`), press enter, and type `id`
+14. Next to owner in the query pane, type open curly braces (`{`), press enter, and type `id`
     - Note that you should have gotten the option to auto complete by pressing enter 
 15. Fill in the rest of the field names:
     - name
