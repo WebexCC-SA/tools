@@ -34,6 +34,47 @@ title: "Pebble Templates"
 >
 > <textarea readonly>\{\{now() | epoch(inMillis=true)\}\}</textarea><br>
 
+
+# Strings
+
+> Return the last 10 characters of an ANI 
+> 
+> <textarea readonly>\{\{NewPhoneContact.ANI | slice (NewPhoneContact.ANI.length -10,NewPhoneContact.ANI.length)\}\}</textarea><br>
+>
+> Return the last 10 characters of an DNIS 
+> 
+> <textarea readonly>\{\{NewPhoneContact.DNIS | slice (NewPhoneContact.DNIS.length -10,NewPhoneContact.DNIS.length)\}\} </textarea><br>
+>
+> Return the last 4 characters of an ANI 
+> 
+> <textarea readonly>\{\{NewPhoneContact.ANI|slice(NewPhoneContact-4,NewPhoneContact.ANI.length)\}\}</textarea><br>
+>
+> Split a comma delimited string into addressable pieces. (Replace "string" with the name of the string you need to split and "number" will be an Integer variable representing which value you want to return (starting with 1))
+>
+> <textarea readonly>\{\{string|split(",",string|split(",")|length-(string|split(",")|length-number))|last|split(",")|first\}\}</textarea><br>
+>
+
+
+# Numbers
+
+> Increment a counter 
+>
+> <textarea readonly>\{\{counter + 1\}\}</textarea><br>
+> 
+> Test if a number is Even (returns true/false)
+>
+> <textarea readonly>\{\{counter is even\}\}</textarea><br>
+>
+> Test if a number is Odd (returns true/false)
+>
+> <textarea readonly>\{\{counter is odd\}\}</textarea><br>
+>
+> 
+>
+>
+
+
+
 <!-- > <textarea readonly>\{\{split("\\|")\}\}</textarea> -->
 >
 
