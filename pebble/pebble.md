@@ -55,7 +55,7 @@ title: "Pebble Templates"
 >
 
 
-# Numbers
+# Numbers, Logic and Comparison
 
 > Increment a counter 
 >
@@ -69,9 +69,24 @@ title: "Pebble Templates"
 >
 > <textarea readonly>\{\{counter is odd\}\}</textarea><br>
 >
+> Test if a variable exists in an array or list.
+>
+> <textarea readonly>{{["410", "443", "667"] contains Caller_Area}}</textarea><br>
+>
+> Test if two conditions are true (set int to 1 and string to Bill)
+>
+> <textarea readonly>\{\{int is odd and string|lower == "bill"\}\}</textarea><br>
+>
+> Test if one of two or more conditions are true (set int to 1 and string to Steve)
+>
+> <textarea readonly>\{\{(int is odd) or (string|lower == "bill")\}\}</textarea><br>
+>
+> Test if an expression is not true
+>
+> <textarea readonly>\{\{3 is not even\}\}</textarea><br>
+>
 > 
->
->
+
 
 
 
