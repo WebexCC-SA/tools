@@ -71,7 +71,7 @@ title: "Pebble Templates"
 >
 > Test if a variable exists in an array or list.
 >
-> <textarea readonly>{{["410", "443", "667"] contains Caller_Area}}</textarea><br>
+> <textarea readonly>\{\{["410", "443", "667"] contains Caller_Area\}\}</textarea><br>
 >
 > Test if two conditions are true (set int to 1 and string to Bill)
 >
