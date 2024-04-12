@@ -681,4 +681,6 @@
       width:calc(50% - (20px / 2))
     }
   }
-  
+  *{
+    all:initial
+  }
