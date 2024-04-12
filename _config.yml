@@ -9,6 +9,6 @@ minima:
   skin: dark
 
 header_pages:
-- redirectToCurrentLabs.md
+- toHub.md
 
   
