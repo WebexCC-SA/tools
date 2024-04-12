@@ -278,17 +278,16 @@
     font-weight:300
   }
   a {
-    all: unset;
+    all: initial;
     /* color:#79b8ff;
     text-decoration:none */
   }
-  /* a:visited {
-    color:#79b8ff
+  a:visited {
+    all: initial
   }
   a:hover {
-    color:#bbb;
-    text-decoration:underline
-  } */
+    all: initial
+  }
   .social-media-list a:hover,
   .pagination a:hover {
     text-decoration:none
@@ -298,7 +297,7 @@
     text-decoration:underline
   }
   blockquote {
-    all: unset;
+    all: initial;
     /* color:#999;
     border-left:4px solid #404040;
     padding-left:10px;
