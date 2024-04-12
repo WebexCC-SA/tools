@@ -95,7 +95,12 @@ title: "Pebble Templates"
 > Test if an expression is not true
 >
 > <textarea readonly>\{\{3 is not even\}\}</textarea><br>
+> 
 
+> Test if a given time stamp (as a string formatted yyyy-MM-dd'T'HH:mm:ss.SSS'Z') is less that or equal to 24 hours old
+>
+> <textarea readonly>\{\{\( dateToCheck | epoch) <= (now() | epoch - 86400)}\}</textarea><br>
+> 
 
 
 
