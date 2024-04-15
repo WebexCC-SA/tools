@@ -77,16 +77,11 @@ In this lab we will be exploring the available fields in task
 20. Execute the query by clicking the send request button or the keyboard shortcut `ctrl + enter`
 
 ## Pick a single task and answer the following questions:
-1. <details><summary>What Channel type is this task from?</summary>Hint: Check field channelType
-   </details>
-2. <details><summary>What is the last queue name?</summary>Hint: Check field lastQueue > name
-   </details>
-3. <details><summary>Was this a callback?</summary>Hint: Check field isCallback
-   </details>
-4.  <details><summary>Is this an active task?</summary>Hint: Check field isActive
-   </details>
-5. <details><summary>Was this task abandoned?</summary>Hint: Check field terminationType
-   </details>
+1. <details><summary>What Channel type is this task from?</summary>Hint: Check field channelType</details>
+2. <details><summary>What is the last queue name?</summary>Hint: Check field lastQueue > name</details>
+3. <details><summary>Was this a callback?</summary>Hint: Check field isCallback</details>
+4. <details><summary>Is this an active task?</summary>Hint: Check field isActive</details>
+5. <details><summary>Was this task abandoned?</summary>Hint: Check field terminationType</details>
 
 
 ### Click Next to continue to the next lesson
