@@ -1,20 +1,29 @@
 ---
-title: "Exploring the Data"
+title: "Exploring the Query"
 ---
 
 <style>.btn{border-radius:30px;padding:5px 10px; border:1px #2196F3}.btn:hover{background: #2196F3;color:white;}</style>
 
 # Introduction
-In this lab we will be exploring the data available our query from the previous lab.
+In this lab we will be exploring the available fields in task
 
 ## Pre-requisites
-- Complete the Getting Started lesson 
+- Complete the Getting Started lesson
 
 ## Lab Objective
 - Use the Add Query feature of Docs to produce a value of report
-- Filter for a single interaction
 - Observer the data values available along with their definitions 
+- Review the data which is returned  
   
+## Check your Authorization 
+  - If it has been over 12 hours since you completed the last lesson
+    - In the Tools menu, click Authorization 
+      - If you are asked to log in, follow the directions.
+      - If the "Copy this text into your Global Environment Variable" modal opens you have already logged in.
+    - Copy the entire Global Environment Variable text and paste it in the Global Environment Variable box
+  
+
+
 ## Add Query from Docs
 <button class="btn" onclick="vidPop('d2c7b761-9291-40ec-b76f-3cb25c657c83')">Launch Video</button> 
 
@@ -64,10 +73,16 @@ In this lab we will be exploring the data available our query from the previous 
    - If the field is not deprecated, place your cursor after the field lane and use the keyboard shortcut `ctrl + shift + enter ` 
 17. While in the query pane and use the keyboard shortcut `ctrl + f` to bring up the find and replace dialog box
 18. In the find box paste `(sort: asc)`, put nothing in the replace box, and click replace all.
-19. Using the time tool, set the from and to fields for 1 day (this query will be bringing back a lot of data)
+19. Using the time tool, set the from and to fields for 1 day (this query could bring back a lot of data)
+20. Execute the query by clicking the send request button or the keyboard shortcut `ctrl + enter`
 
-## Add a filter
-
+## Pick a single task and answer the following questions:
+1. What Channel type is this task from? <details> <summary>hint</summary>Check field channelType</details>
+2. What is the last queue name?<details> <summary>hint</summary>Check field lastQueue > name</details>
+3. Was this a callback?<details> <summary>hint</summary>Check field isCallback</details>
+4. Is this an active task? <details> <summary>hint</summary>Check field isActive</details>
+5. Was this task abandoned? <details> <summary>hint</summary>Check field terminationType</details>
+### Click Next to continue to the next lesson
 
 
 
