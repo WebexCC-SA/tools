@@ -2,7 +2,7 @@
 title: "Getting Started"
 ---
 
-<link rel="stylesheet" href="/tools/gql/newstyle.css">
+
 
 # Introduction
 In this group of labs we will be exploring how to use GraphQL to get data from the Webex Contact Center's search API.
