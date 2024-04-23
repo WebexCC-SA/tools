@@ -73,7 +73,7 @@ In this lab we will be exploring the available fields in task
    - If the field is not deprecated, place your cursor after the field lane and use the keyboard shortcut `ctrl + shift + enter ` 
 17. While in the query pane and use the keyboard shortcut `ctrl + f` to bring up the find and replace dialog box
 18. In the find box paste `(sort: asc)`, put nothing in the replace box, and click replace all.
-19. Using the time tool, set the from and to fields for 1 day (this query could bring back a lot of data)
+19. Using the time widget, set the from and to fields for 1 day (this query could bring back a lot of data)
 20. Execute the query by clicking the send request button or the keyboard shortcut `ctrl + enter`
 
 ## Pick a single task and answer the following questions:
