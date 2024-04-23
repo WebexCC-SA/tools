@@ -50,6 +50,8 @@ While single filters can be useful, it is common to need more that one filter to
 <button class="btn" onclick="vidPop('d2c7b761-9291-40ec-b76f-3cb25c657c83')">Launch Video</button>
 
 
+## Adding our first filter
+
 1. <details><summary>Click + Add new in the top bar of Altair </summary>
          <img src="https://webexcc-sa.github.io/tools/gql/images/addNew.png"/>
          </details>
@@ -190,6 +192,9 @@ While single filters can be useful, it is common to need more that one filter to
       timezone
     \}
   \}
-\}
-</textarea>
-</details>
+\}</textarea></details>
+
+3. Uncomment "filter:"
+4. Next to filter: add `\{ channelType: \{ equals: telephony \} \}`
+5. Send the request
+6. 
