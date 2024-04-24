@@ -195,6 +195,18 @@ While single filters can be useful, it is common to need more that one filter to
 \}</textarea></details>
 
 3. Uncomment "filter:"
-4. Next to filter: add `\{ channelType: \{ equals: telephony \} \}`
+4. Next to "filter:" add <textarea spellcheck="false" cols="70">\{ channelType: \{ equals: telephony \} \}</textarea>
 5. Send the request
-6. 
+6. Open the Docs panel
+7. Navigate Query > task > filter > ChannelTypeExpression (do not click channelType as it will not show you the next level of information) > (next to equals) ChannelTypes
+   - Note that this is an enum filter type
+8. In the Docs panel, click the back button until you get back to TaskFilters
+9. Navigate to terminiationType
+    - <details><summary>What type of filter is terminationType?</summary>String</details>
+10. Before we can add this filter to our query, we need to create an "and" group.  Add the "and" group like this. <textarea spellcheck="false" cols="70" rows="4" >and: [
+        \{ channelType: \{ equals: telephony \} \}
+
+      ]</textarea>
+11. <details><summary>Below the channelType filter and still inside the and brackets, add a filter for terminationType to equal "normal".</summary> <textarea spellcheck="false" cols="70" rows="1">\{ terminationType: \{ equals: "normal" \} \}</textarea></details>
+12. Send the request.
+    - 
