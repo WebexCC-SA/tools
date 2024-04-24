@@ -205,8 +205,9 @@ While single filters can be useful, it is common to need more that one filter to
     - <details><summary>What type of filter is terminationType?</summary>String</details>
 10. Before we can add this filter to our query, we need to create an "and" group.  Add the "and" group like this. <textarea spellcheck="false" cols="70" rows="4" >and: [
         \{ channelType: \{ equals: telephony \} \}
-
-      ]</textarea>
+]</textarea>
 11. <details><summary>Below the channelType filter and still inside the and brackets, add a filter for terminationType to equal "normal".</summary> <textarea spellcheck="false" cols="70" rows="1">\{ terminationType: \{ equals: "normal" \} \}</textarea></details>
 12. Send the request.
-    - 
+    - You should only have records returned which were both from teh telephony channelType and had a "normal" terminationType
+    - What if you wanted to see all calls which did not terminate normally?
+13. 
