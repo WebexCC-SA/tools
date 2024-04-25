@@ -217,7 +217,7 @@ While single filters can be useful, it is common to need more that one filter to
     - What terminationTypes are returned?
 
 
-## ⚠️ Note that the use of the "not" group filter will be evaluated differently based on placement.
+### ⚠️ Note that the use of the "not" group filter will be evaluated differently based on placement.
 
 - This filter will evaluate as not channelType email AND not isActive false and will return every record that matches both criteria 
 
