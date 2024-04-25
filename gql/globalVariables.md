@@ -1,7 +1,46 @@
 ---
-title: "Reporting on Global Variables"
+title: "Adding Global Variables Into Your Query"
 ---
 
-<style>.btn{border-radius:30px;}button:hover{background: #2196F3;color:white;}</style>
+<style>.btn{border-radius:30px;padding:5px 10px; border:1px #2196F3}.btn:hover{background: #2196F3;color:white;}</style>
 
-# This lab is still under development
+# Introduction
+
+
+
+## Pre-requisites
+- Complete Getting Started
+- Complete Exploring the Query
+- The tenant you are querying must have Reportable Global Variables 
+- The Reportable Global Variables must be in a flow in order to return values
+- You must know the name and type of Reportable Global Variables you are adding to your queries
+
+## Lab Objective
+- Understand the types of Global Variables
+- Understand how Global Variables types map between the Search API and Webex Contact Center 
+- Add Reportable Global Variables to a query
+
+## Variable type mapping
+
+| GraphQL Global Variable Type | Webex Contact Center Global Variable Type | 
+|---|---|
+| integerGlobalVariables | Integer |
+| stringGlobalVariables | String |
+| longGlobalVariables | DateTime |
+| doubleGlobalVariables | Decimal |
+| booleanGlobalVariables | Boolean |
+
+## Returning a Global Variable
+   <textarea spellcheck="false" cols="70" rows="4">stringGlobalVariables(name:"nameOfVariable"){
+    name
+    value
+}</textarea>
+
+## Returning more than one of the same type of variable
+<textarea spellcheck="false" cols="70" rows="5">nameOfVariable: stringGlobalVariables(name:"nameOfVariable"){
+    name
+    value
+}</textarea>
+
+
+<textarea spellcheck="false" cols="70" rows="5"></textarea>

@@ -6,6 +6,8 @@ title: "Aggregations"
 
 # Introduction
 
+
+
 ## Pre-requisites
 - Complete Getting Started
 - Complete Exploring the Query

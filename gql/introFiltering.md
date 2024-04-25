@@ -55,7 +55,7 @@ While single filters can be useful, it is common to need more that one filter to
 1. <details><summary>Click + Add new in the top bar of Altair </summary>
          <img src="https://webexcc-sa.github.io/tools/gql/images/addNew.png"/>
          </details>
-2. <details><summary>Copy the query from the last lab.</summary>
+2. <details><summary>Copy the query from the "Exploring the Query" lab.</summary>
     <textarea spellcheck="false" cols="70" rows="138">
 \{
   task(
@@ -194,26 +194,28 @@ While single filters can be useful, it is common to need more that one filter to
   \}
 \}</textarea></details>
 
-3. Uncomment "filter:"
-4. Next to "filter:" add <textarea spellcheck="false" cols="70">\{ channelType: \{ equals: telephony \} \}</textarea>
-5. Send the request
-6. Open the Docs panel
-7. Navigate Query > task > filter > ChannelTypeExpression (do not click channelType as it will not show you the next level of information) > (next to equals) ChannelTypes
+1. Uncomment "filter:"
+2. Next to "filter:" add <textarea spellcheck="false" cols="70">\{ channelType: \{ equals: telephony \} \}</textarea>
+3. Send the request
+4. Open the Docs panel
+5. Navigate Query > task > filter > ChannelTypeExpression (do not click channelType as it will not show you the next level of information) > (next to equals) ChannelTypes
    - Note that this is an enum filter type
-8. In the Docs panel, click the back button until you get back to TaskFilters
-9. Navigate to terminiationType
+6. In the Docs panel, click the back button until you get back to TaskFilters
+7. Navigate to terminiationType
     - <details><summary>What type of filter is terminationType?</summary>String</details>
-10. Before we can add this filter to our query, we need to create an "and" group.  Add the "and" group like this. <textarea spellcheck="false" cols="70" rows="4" >and: [
+8.  Before we can add this filter to our query, we need to create an "and" group.  Add the "and" group like this. <textarea spellcheck="false" cols="70" rows="4" >and: [
         \{ channelType: \{ equals: telephony \} \}
 ]</textarea>
-11. <details><summary>Below the channelType filter and still inside the and brackets, add a filter for terminationType to equal "normal".</summary> <textarea spellcheck="false" cols="70" rows="1">\{ terminationType: \{ equals: "normal" \} \}</textarea></details>
-12. Send the request.
+1.  <details><summary>Below the channelType filter and still inside the and brackets, add a filter for terminationType to equal "normal".</summary> <textarea spellcheck="false" cols="70" rows="1">\{ terminationType: \{ equals: "normal" \} \}</textarea></details>
+2.  Send the request.
     - You should only have records returned which were both from the telephony channelType and had a "normal" terminationType
     - <details><summary>What if you wanted to see all calls which did not terminate normally?</summary> you could change "equals" to "notequals"
         <textarea spellcheck="false" cols="70" rows="1">\{ terminationType: \{ notequals: "normal" \} \}</textarea>
+
         OR you could place the filter in a "not" group filter 
+        
         <textarea spellcheck="false" cols="70" rows="1">\{ not: \{ terminationType: \{ equals: "normal" \} \} \}</textarea></details>
-13. Change your filters to return calls which did not have a terminiationType of "normal"
+3.  Change your filters to return calls which did not have a terminiationType of "normal"
     - What terminationTypes are returned?
 
 
@@ -236,9 +238,12 @@ While single filters can be useful, it is common to need more that one filter to
     filter: {
         not: {
             and: [
-            { channelType: { equals: email } }
-            { isActive: { equals: false } }
+                { channelType: { equals: email } }
+                { isActive: { equals: false } }
             ]
         }
     }</textarea>
+
+
+### Click Next to continue to the next lesson
 <!-- <textarea spellcheck="false" cols="70" rows="5"></textarea> -->
