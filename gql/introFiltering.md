@@ -2,7 +2,7 @@
 title: "Introduction to Filtering"
 ---
 
-<style>.btn{border-radius:30px;}button:hover{background: #2196F3;color:white;}</style>
+<style>.btn{border-radius:30px;padding:5px 10px; border:1px #2196F3}.btn:hover{background: #2196F3;color:white;}</style>
 
 
 # Introduction 
@@ -208,6 +208,11 @@ While single filters can be useful, it is common to need more that one filter to
 ]</textarea>
 11. <details><summary>Below the channelType filter and still inside the and brackets, add a filter for terminationType to equal "normal".</summary> <textarea spellcheck="false" cols="70" rows="1">\{ terminationType: \{ equals: "normal" \} \}</textarea></details>
 12. Send the request.
-    - You should only have records returned which were both from teh telephony channelType and had a "normal" terminationType
-    - What if you wanted to see all calls which did not terminate normally?
-13. 
+    - You should only have records returned which were both from the telephony channelType and had a "normal" terminationType
+    - <details><summary>What if you wanted to see all calls which did not terminate normally?</summary> you could change "equals" to "notequals"
+        <textarea spellcheck="false" cols="70" rows="1">\{ terminationType: \{ notequals: "normal" \} \}</textarea>
+        OR you could place the filter in a "not" group filter 
+        <textarea spellcheck="false" cols="70" rows="1">\{ not: \{ terminationType: \{ equals: "normal" \} \} \}</textarea></details>
+13. Change your filters to return calls which did not have a terminiationType of "normal"
+    - What terminationTypes are returned?
+14. 
