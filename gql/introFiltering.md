@@ -215,4 +215,28 @@ While single filters can be useful, it is common to need more that one filter to
         <textarea spellcheck="false" cols="70" rows="1">\{ not: \{ terminationType: \{ equals: "normal" \} \} \}</textarea></details>
 13. Change your filters to return calls which did not have a terminiationType of "normal"
     - What terminationTypes are returned?
-14. 
+
+
+# ⚠️ Note that the use of the "not" group filter will be evaluated differently based on placement.
+
+<textarea spellcheck="false" cols="70" rows="8">
+    # will evaluate as not channelType email AND not isActive false
+    # and will return every record that matches both criteria
+filter: {
+    and: [ 
+        { not: { channelType: { equals: email } } }
+        { not: { isActive: { equals: false } } }
+    ]
+}</textarea>
+<textarea spellcheck="false" cols="70" rows="10">
+    # will evaluate as not channelType email AND not isActive false
+    # and return every record that does not match both criteria
+filter: {
+    not: {
+        and: [
+          { channelType: { equals: email } }
+          { isActive: { equals: false } }
+        ]
+     }
+}</textarea>
+<!-- <textarea spellcheck="false" cols="70" rows="5"></textarea> -->
