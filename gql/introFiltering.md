@@ -217,26 +217,28 @@ While single filters can be useful, it is common to need more that one filter to
     - What terminationTypes are returned?
 
 
-# ⚠️ Note that the use of the "not" group filter will be evaluated differently based on placement.
+### ⚠️ Note that the use of the "not" group filter will be evaluated differently based on placement.
 
-<textarea spellcheck="false" cols="70" rows="8">
-    # will evaluate as not channelType email AND not isActive false
-    # and will return every record that matches both criteria
-filter: {
-    and: [ 
-        { not: { channelType: { equals: email } } }
-        { not: { isActive: { equals: false } } }
-    ]
-}</textarea>
-<textarea spellcheck="false" cols="70" rows="10">
-    # will evaluate as not channelType email AND not isActive false
-    # and return every record that does not match both criteria
-filter: {
-    not: {
-        and: [
-          { channelType: { equals: email } }
-          { isActive: { equals: false } }
+- This filter will evaluate as not channelType email AND not isActive false and will return every record that matches both criteria 
+
+  
+    <textarea spellcheck="false" cols="70" rows="6">
+    filter: {
+        and: [ 
+            { not: { channelType: { equals: email } } }
+            { not: { isActive: { equals: false } } }
         ]
-     }
-}</textarea>
+    }</textarea>
+
+- This filter will evaluate as not channelType email AND not isActive false and return every record that does not match both criteria
+  
+    <textarea spellcheck="false" cols="70" rows="8">
+    filter: {
+        not: {
+            and: [
+            { channelType: { equals: email } }
+            { isActive: { equals: false } }
+            ]
+        }
+    }</textarea>
 <!-- <textarea spellcheck="false" cols="70" rows="5"></textarea> -->
