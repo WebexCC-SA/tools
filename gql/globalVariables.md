@@ -23,7 +23,7 @@ title: "Adding Global Variables Into Your Query"
 ## Variable type mapping
 
 | GraphQL Global Variable Type | Webex Contact Center Global Variable Type | 
-|---|---|
+|:-:|:-:|
 | integerGlobalVariables | Integer |
 | stringGlobalVariables | String |
 | longGlobalVariables | DateTime |
@@ -37,10 +37,12 @@ title: "Adding Global Variables Into Your Query"
 }</textarea>
 
 ## Returning more than one of the same type of variable
+  
 <textarea spellcheck="false" cols="70" rows="5">nameOfVariable: stringGlobalVariables(name:"nameOfVariable"){
     name
     value
 }</textarea>
-
-
-<textarea spellcheck="false" cols="70" rows="5"></textarea>
+  <details><summary>Note you can comment out name or omit name in the return field list as the variable type will be replaced with the alias provided</summary><textarea spellcheck="false" cols="70" rows="5">nameOfVariable: stringGlobalVariables(name:"nameOfVariable"){
+    # name
+    value
+}</textarea></details>
