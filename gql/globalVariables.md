@@ -2,7 +2,7 @@
 title: "Adding Global Variables Into Your Query"
 ---
 
-<style>.btn{border-radius:30px;padding:5px 10px; border:1px #2196F3}.btn:hover{background: #2196F3;color:white;}table td,table th{border:1px solid #404040;}</style>
+<!-- <style>.btn{border-radius:30px;padding:5px 10px; border:1px #2196F3}.btn:hover{background: #2196F3;color:white;}table td,table th{border:1px solid #404040;}table{border-collapse: collapse;}</style> -->
 
 # Introduction
 
@@ -19,6 +19,7 @@ title: "Adding Global Variables Into Your Query"
 - Understand the types of Global Variables
 - Understand how Global Variables types map between the Search API and Webex Contact Center 
 - Add Reportable Global Variables to a query
+- Add more than one of the same type of Global Variable
 
 ## Variable type mapping
 
@@ -38,11 +39,11 @@ title: "Adding Global Variables Into Your Query"
 
 ## Returning more than one of the same type of variable
   
-<textarea spellcheck="false" cols="70" rows="5">nameOfVariable: stringGlobalVariables(name:"nameOfVariable"){
+<textarea spellcheck="false" cols="70" rows="4">nameOfVariable: stringGlobalVariables(name:"nameOfVariable"){
     name
     value
 }</textarea>
-  <details><summary>Note you can comment out name or omit name in the return field list as the variable type will be replaced with the alias provided</summary><textarea spellcheck="false" cols="70" rows="5">nameOfVariable: stringGlobalVariables(name:"nameOfVariable"){
+  <details><summary>Note you can comment out name or omit name in the return field list as the variable type will be replaced with the alias provided</summary><textarea spellcheck="false" cols="70" rows="4">nameOfVariable: stringGlobalVariables(name:"nameOfVariable"){
     # name
     value
 }</textarea></details>
