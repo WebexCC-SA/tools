@@ -22,7 +22,7 @@ title: "Adding Global Variables Into Your Query"
 
 ## Variable type mapping
 
-| GraphQL Global Variable Type | Webex Contact Center Global Variable Type | 
+| GraphQL Global Variable Type | &emsp; Webex Contact Center Global Variable Type | 
 |:-:|:-:|
 | integerGlobalVariables | Integer |
 | stringGlobalVariables | String |
