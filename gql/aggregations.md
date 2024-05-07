@@ -37,13 +37,13 @@ title: "Aggregations"
      -  type - The type of aggregation operation
      -  name - The name field of the output aggregation
   
-   - {% raw %}If you wanted to return a count of tasks and name it "All Tasks"
+   - {% raw %}If you wanted to return a count of tasks and name it "All Tasks":
   
         <textarea spellcheck="false" cols="70" rows="2">aggregations: [{ field: "id", type: count, name: "All Tasks" }]</textarea>
 
-   - If you wanted to return a count of tasks which were calls and name it "Calls"
+   - If you wanted to also return a count of tasks which were calls and name it "Calls":
   
-        <textarea spellcheck="false" cols="70" rows="8">aggregations: [
+        <textarea spellcheck="false" cols="70" rows="9">aggregations: [
   { field: "id", type: count, name: "All Tasks" }
   {
   field: "id"
@@ -53,6 +53,54 @@ title: "Aggregations"
   }
   ]</textarea>
 {% endraw %}
+     
+     - Note that you can separate via a comma or new line.
 
+### Gathering some statistics
+1. Copy this query to return the average queue duration
+   - Use the Time Widget to retrieve a weeks worth of data and run the query
+  
+    {% raw %} <textarea spellcheck="false" cols="70" rows="20">
+ {
+  task(
+    from: "____"
+    to: "____"
+    timeComparator: createdTime
+    filter: {}
+    aggregations: [
+      { field: "queueDuration", type: average, name: "Average Duration" }
+    ]
+  ) {
+    tasks {
+      aggregation {
+        name
+        value
+      }
+    }
+  }
+}
+
+</textarea>
+
+2. <details><summary>Add the min and max queue duration and run the query</summary><textarea spellcheck="false" cols="70" rows="6">aggregations: [
+      { field: "queueDuration", type: average, name: "Average Duration" }
+      { field: "queueDuration", type: min, name: "Minimum Duration" }
+      { field: "queueDuration", type: max, name: "Maximum Duration" }
+    ]</textarea> </details>
+
+3. Isolate the queue durations by channelType by adding channelType in the fields list directly above aggregation and run the query
+4. Let's filter the entire query to only return telephony tasks using the report filter and remove channelType from the fields list in task
+5. Isolate the queue durations by terminationType
+   - What is the average time to abandon?
+   - What is the average speed of answer?
+   - What is the maximum time in queue?
+6. Add filters to the main query filter to only return normal and abandoned calls
+7. Add an aggregation to return the count of calls.
+8. Isolate the call count and durations by queue name and termination type.
+9. Comment out the filter for termination type of abandoned and termination type in the fields list
+10.  
+
+
+{% endraw %}
 
 <!-- <textarea spellcheck="false" cols="70" rows="4"></textarea> -->
