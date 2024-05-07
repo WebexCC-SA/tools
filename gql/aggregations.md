@@ -36,8 +36,9 @@ title: "Aggregations"
      -  field - The field on which the aggregation operation is to be done
      -  type - The type of aggregation operation
      -  name - The name field of the output aggregation
-  -  {% raw %}If you wanted to return a count of tasks and name it "All Tasks"
-    <textarea spellcheck="false" cols="70" rows="2">aggregations: [{ field: "id", type: count, name: "All Tasks" }]</textarea>
+  
+   - {% raw %}If you wanted to return a count of tasks and name it "All Tasks"
+        <textarea spellcheck="false" cols="70" rows="2">aggregations: [{ field: "id", type: count, name: "All Tasks" }]</textarea>
 
    - If you wanted to return a count of tasks which were calls and name it "Calls"
      <textarea spellcheck="false" cols="70" rows="8">aggregations: [
