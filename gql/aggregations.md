@@ -1,5 +1,5 @@
 ---
-title: "Aggregations"
+title: "Using Aggregations in the Query"
 ---
 
 
@@ -10,7 +10,7 @@ title: "Aggregations"
 ## Pre-requisites
 - Complete Getting Started
 - Complete Exploring the Query
-- 
+- Complete Introduction to Filtering
 
 
 ## Lab Objective
@@ -78,9 +78,7 @@ title: "Aggregations"
       }
     }
   }
-}
-
-</textarea>
+}</textarea>
 
 2. <details><summary>Add the min and max queue duration and run the query</summary><textarea spellcheck="false" cols="70" rows="6">aggregations: [
       { field: "queueDuration", type: average, name: "Average Duration" }
