@@ -2,5 +2,6 @@
     {"title":"Getting Started","address":"https://webexcc-sa.github.io/tools/gql/gettingStarted"},
     {"title":"Exploring the Query","address":"https://webexcc-sa.github.io/tools/gql/exploringData"},
     {"title":"Introduction to Filtering","address":"https://webexcc-sa.github.io/tools/gql/introFiltering"},
+    {"title":"Using Aggregations in the Query","address":"https://webexcc-sa.github.io/tools/gql/aggregations"}
     {"title":"Adding Global Variables","address":"https://webexcc-sa.github.io/tools/gql/globalVariables"}
     ]
