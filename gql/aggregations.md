@@ -4,7 +4,7 @@ title: "Using Aggregations in the Query"
 
 
 # Introduction
-In this lab we will be combining all that we have learned in the previous labs to add aggregations to a query.  
+In this lab we will be combining all that we have learned in the previous labs to add aggregations to a query.  As you progress through the lab, try to figure out how to achieve the the step before uncovering the answer.
 
 
 ## Pre-requisites
@@ -64,8 +64,7 @@ In this lab we will be combining all that we have learned in the previous labs t
 1. Copy this query to return the average queue duration
    - Use the Time Widget to retrieve a weeks worth of data and run the query
   
-    {% raw %} <textarea spellcheck="false" cols="70" rows="19">
- {
+    {% raw %} <textarea spellcheck="false" cols="70" rows="19">{
   task(
     from: "____"
     to: "____"
@@ -93,6 +92,7 @@ In this lab we will be combining all that we have learned in the previous labs t
 3. <details><summary>Isolate the queue durations by channelType by adding channelType in the fields list directly above aggregation and run the query</summary><img src="https://webexcc-sa.github.io/tools/gql/images/channelType.gif"></details>
 4. <details><summary>Let's filter the entire query to only return telephony tasks using the report filter and remove channelType from the fields list in task</summary><img src="https://webexcc-sa.github.io/tools/gql/images/channelTypefilter.gif"></details>
 5. <details><summary>Isolate the queue durations by terminationType</summary><img src="https://webexcc-sa.github.io/tools/gql/images/terminationType.gif"></details>
+   
    - What is the average time to abandon?
    - What is the average speed of answer?
    - What is the maximum time in queue?
@@ -109,10 +109,50 @@ In this lab we will be combining all that we have learned in the previous labs t
     }</textarea></details>
 7. <details><summary>Add an aggregation to return the count of calls.</summary><textarea spellcheck="false" cols="70" rows="1">{ field: "id", type: count, name: "Calls" }</textarea></details>
 8. <details><summary>Isolate the call count and durations by queue name and termination type.</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastQueue.gif"></details>
-9. Comment out the filter for termination type of abandoned, the aggregation for Minimum Queue Duration, and termination type in the fields list (`ctrl + /`)
-10. Add min max and average for connectedDuration to your aggregations.
+9.  Comment out the filter for termination type of abandoned, the aggregation for Minimum Queue Duration, and termination type in the fields list (`ctrl + /`)
+10. <details><summary>Add max and average for connectedDuration to your aggregations.</summary><textarea spellcheck="false" cols="70" rows="10">  {
+        field: "connectedDuration"
+        type: max
+        name: "Maximum Connected Duration"
+      }
+      {
+        field: "connectedDuration"
+        type: average
+        name: "Average Connected Duration"
+      }</textarea></details>
 11. Isolate the queue aggregations to additionally be broken up by lastWrapupCodeName
-12. 
+12. <details><summary>Add an aggregation to return a count of callback tasks.</summary><textarea spellcheck="false" cols="70" rows="6">
+      {
+        field: "isCallback"
+        type: count
+        name: "callback"
+        filter: { isCallback: { equals: true } }
+      }</textarea></details>
+13. <details><summary>Bifurcate the max and average queue duration aggregations on if the call was a callback without splitting the Connected Duration aggregations.</summary><textarea spellcheck="false" cols="70" rows="24">  {
+        field: "queueDuration"
+        type: max
+        name: "Callback Maximum Queue Duration"
+        filter: { isCallback: { equals: true } }
+      }
+      {
+        field: "queueDuration"
+        type: average
+        name: "Callback Average Queue Duration"
+        filter: { isCallback: { equals: true } }
+      }
+      {
+        field: "queueDuration"
+        type: max
+        name: "Maximum Queue Duration No Callback"
+        filter: { isCallback: { equals: false } }
+      }
+      {
+        field: "queueDuration"
+        type: average
+        name: "Average Queue Duration No Callback"
+        filter: { isCallback: { equals: false } }
+      }</textarea></details>
+14.  
 
 
 {% endraw %}
