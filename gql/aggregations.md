@@ -64,7 +64,7 @@ In this lab we will be combining all that we have learned in the previous labs t
 1. Copy this query to return the average queue duration
    - Use the Time Widget to retrieve a weeks worth of data and run the query
   
-    {% raw %} <textarea spellcheck="false" cols="70" rows="18">
+    {% raw %} <textarea spellcheck="false" cols="70" rows="19">
  {
   task(
     from: "____"
@@ -109,8 +109,10 @@ In this lab we will be combining all that we have learned in the previous labs t
     }</textarea></details>
 7. <details><summary>Add an aggregation to return the count of calls.</summary><textarea spellcheck="false" cols="70" rows="1">{ field: "id", type: count, name: "Calls" }</textarea></details>
 8. <details><summary>Isolate the call count and durations by queue name and termination type.</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastQueue.gif"></details>
-9. Comment out the filter for termination type of abandoned and termination type in the fields list (`ctrl + /`)
-10. Add min, max and average for connected duration to your aggregations 
+9. Comment out the filter for termination type of abandoned, the aggregation for Minimum Queue Duration, and termination type in the fields list (`ctrl + /`)
+10. Add min max and average for connectedDuration to your aggregations.
+11. Isolate the queue aggregations to additionally be broken up by lastWrapupCodeName
+12. 
 
 
 {% endraw %}
