@@ -120,7 +120,7 @@ In this lab we will be combining all that we have learned in the previous labs t
         type: average
         name: "Average Connected Duration"
       }</textarea></details>
-11. Isolate the queue aggregations to additionally be broken up by lastWrapupCodeName
+11. <details><summary>Isolate the queue aggregations to additionally be broken up by lastWrapupCodeName</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastWrapupCodeName.png"></details>
 12. <details><summary>Add an aggregation to return a count of callback tasks.</summary><textarea spellcheck="false" cols="70" rows="6">
       {
         field: "isCallback"
