@@ -4,7 +4,7 @@ title: "Using Aggregations in the Query"
 
 
 # Introduction
-
+In this lab we will be combining all that we have learned in the previous labs to add aggregations to a query.  
 
 
 ## Pre-requisites
@@ -15,7 +15,11 @@ title: "Using Aggregations in the Query"
 
 ## Lab Objective
 
-
+- Understand which aggregations are available for a query
+- Properly format aggregations
+- Use compound filters
+- Isolate our aggregation data to answer common contact center questions
+- Use filters in aggregations
 
 <!-- ## Aggregation Types
 - count
@@ -68,7 +72,7 @@ title: "Using Aggregations in the Query"
     timeComparator: createdTime
     filter: {}
     aggregations: [
-      { field: "queueDuration", type: average, name: "Average Duration" }
+      { field: "queueDuration", type: average, name: "Average Queue Duration" }
     ]
   ) {
     tasks {
@@ -81,9 +85,9 @@ title: "Using Aggregations in the Query"
 }</textarea>
 
 2. <details><summary>Add the min and max queue duration and run the query</summary><textarea spellcheck="false" cols="70" rows="6">aggregations: [
-      { field: "queueDuration", type: average, name: "Average Duration" }
-      { field: "queueDuration", type: min, name: "Minimum Duration" }
-      { field: "queueDuration", type: max, name: "Maximum Duration" }
+      { field: "queueDuration", type: average, name: "Average Queue Duration" }
+      { field: "queueDuration", type: min, name: "Minimum Queue Duration" }
+      { field: "queueDuration", type: max, name: "Maximum Queue Duration" }
     ]</textarea> </details>
 
 3. <details><summary>Isolate the queue durations by channelType by adding channelType in the fields list directly above aggregation and run the query</summary><img src="https://webexcc-sa.github.io/tools/gql/images/channelType.gif"></details>
@@ -106,7 +110,7 @@ title: "Using Aggregations in the Query"
 7. <details><summary>Add an aggregation to return the count of calls.</summary><textarea spellcheck="false" cols="70" rows="1">{ field: "id", type: count, name: "Calls" }</textarea></details>
 8. <details><summary>Isolate the call count and durations by queue name and termination type.</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastQueue.gif"></details>
 9. Comment out the filter for termination type of abandoned and termination type in the fields list (`ctrl + /`)
-10.  
+10. Add min, max and average for connected duration to your aggregations 
 
 
 {% endraw %}

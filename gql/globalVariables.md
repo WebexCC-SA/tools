@@ -2,7 +2,7 @@
 title: "Adding Global Variables Into Your Query"
 ---
 
-<!-- <style>.btn{border-radius:30px;padding:5px 10px; border:1px #2196F3}.btn:hover{background: #2196F3;color:white;}table td,table th{border:1px solid #404040;}table{border-collapse: collapse;}</style> -->
+
 
 # Introduction
 
@@ -47,3 +47,7 @@ title: "Adding Global Variables Into Your Query"
     # name
     value
 }</textarea></details>
+
+## Filtering with Global Variables
+
+## Global Variable Aggregations
