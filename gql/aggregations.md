@@ -21,14 +21,6 @@ In this lab we will be combining all that we have learned in the previous labs t
 - Isolate our aggregation data to answer common contact center questions
 - Use filters in aggregations
 
-<!-- ## Aggregation Types
-- count
-- sum
-- average
-- max
-- min
-- cardinality  -->
-
 ## Exploring Aggregation Options
 1. <details><summary>Click + Add new in the top bar of Altair </summary>
          <img src="https://webexcc-sa.github.io/tools/gql/images/addNew.png"/>
@@ -60,7 +52,7 @@ In this lab we will be combining all that we have learned in the previous labs t
      
      - Note that you can separate via a comma or new line.
 
-### Gathering some statistics
+## Gathering some statistics
 1. Copy this query to return the average queue duration
    - Use the Time Widget to retrieve a weeks worth of data and run the query
   
@@ -96,7 +88,9 @@ In this lab we will be combining all that we have learned in the previous labs t
    - What is the average time to abandon?
    - What is the average speed of answer?
    - What is the maximum time in queue?
-6. <details><summary>Add filters to the main query filter to only return normal and abandoned calls</summary><textarea spellcheck="false" cols="70" rows="11">  filter: {
+
+## Delving into the Data
+1. <details><summary>Add filters to the main query filter to only return normal and abandoned calls</summary><textarea spellcheck="false" cols="70" rows="11">  filter: {
       and: [
         { channelType: { equals: telephony } }
         {
@@ -107,10 +101,10 @@ In this lab we will be combining all that we have learned in the previous labs t
         }
       ]
     }</textarea></details>
-7. <details><summary>Add an aggregation to return the count of calls.</summary><textarea spellcheck="false" cols="70" rows="1">{ field: "id", type: count, name: "Calls" }</textarea></details>
-8. <details><summary>Isolate the call count and durations by queue name and termination type.</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastQueue.gif"></details>
-9.  Comment out the filter for termination type of abandoned, the aggregation for Minimum Queue Duration, and termination type in the fields list (`ctrl + /`)
-10. <details><summary>Add max and average for connectedDuration to your aggregations.</summary><textarea spellcheck="false" cols="70" rows="10">  {
+2. <details><summary>Add an aggregation to return the count of calls.</summary><textarea spellcheck="false" cols="70" rows="1">{ field: "id", type: count, name: "Calls" }</textarea></details>
+3. <details><summary>Isolate the call count and durations by queue name and termination type.</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastQueue.gif"></details>
+4.  Comment out the filter for termination type of abandoned, the aggregation for Minimum Queue Duration, and termination type in the fields list (`ctrl + /`)
+5. <details><summary>Add max and average for connectedDuration to your aggregations.</summary><textarea spellcheck="false" cols="70" rows="10">  {
         field: "connectedDuration"
         type: max
         name: "Maximum Connected Duration"
@@ -120,15 +114,15 @@ In this lab we will be combining all that we have learned in the previous labs t
         type: average
         name: "Average Connected Duration"
       }</textarea></details>
-11. <details><summary>Isolate the queue aggregations to additionally be broken up by lastWrapupCodeName</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastWrapupCodeName.png"></details>
-12. <details><summary>Add an aggregation to return a count of callback tasks.</summary><textarea spellcheck="false" cols="70" rows="6">
+6. <details><summary>Isolate the queue aggregations to additionally be broken up by lastWrapupCodeName</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastWrapupCodeName.png"></details>
+7. <details><summary>Add an aggregation to return a count of callback tasks.</summary><textarea spellcheck="false" cols="70" rows="6">
       {
         field: "isCallback"
         type: count
         name: "callback"
         filter: { isCallback: { equals: true } }
       }</textarea></details>
-13. <details><summary>Bifurcate the max and average queue duration aggregations on if the call was a callback without splitting the Connected Duration aggregations.</summary><textarea spellcheck="false" cols="70" rows="24">  {
+8. <details><summary>Bifurcate the max and average queue duration aggregations on if the call was a callback without splitting the Connected Duration aggregations.</summary><textarea spellcheck="false" cols="70" rows="24">  {
         field: "queueDuration"
         type: max
         name: "Callback Maximum Queue Duration"
@@ -151,10 +145,9 @@ In this lab we will be combining all that we have learned in the previous labs t
         type: average
         name: "Average Queue Duration No Callback"
         filter: { isCallback: { equals: false } }
-      }</textarea></details>
-14.  
+      }</textarea></details>  
 
 
 {% endraw %}
-
+### Click Next to continue to the next lesson
 <!-- <textarea spellcheck="false" cols="70" rows="4"></textarea> -->
