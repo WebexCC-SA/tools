@@ -60,7 +60,7 @@ title: "Using Aggregations in the Query"
 1. Copy this query to return the average queue duration
    - Use the Time Widget to retrieve a weeks worth of data and run the query
   
-    {% raw %} <textarea spellcheck="false" cols="70" rows="20">
+    {% raw %} <textarea spellcheck="false" cols="70" rows="18">
  {
   task(
     from: "____"
@@ -86,16 +86,26 @@ title: "Using Aggregations in the Query"
       { field: "queueDuration", type: max, name: "Maximum Duration" }
     ]</textarea> </details>
 
-3. Isolate the queue durations by channelType by adding channelType in the fields list directly above aggregation and run the query
-4. Let's filter the entire query to only return telephony tasks using the report filter and remove channelType from the fields list in task
-5. Isolate the queue durations by terminationType
+3. <details><summary>Isolate the queue durations by channelType by adding channelType in the fields list directly above aggregation and run the query</summary><img src="https://webexcc-sa.github.io/tools/gql/images/channelType.gif"></details>
+4. <details><summary>Let's filter the entire query to only return telephony tasks using the report filter and remove channelType from the fields list in task</summary><img src="https://webexcc-sa.github.io/tools/gql/images/channelTypefilter.gif"></details>
+5. <details><summary>Isolate the queue durations by terminationType</summary><img src="https://webexcc-sa.github.io/tools/gql/images/terminationType.gif"></details>
    - What is the average time to abandon?
    - What is the average speed of answer?
    - What is the maximum time in queue?
-6. Add filters to the main query filter to only return normal and abandoned calls
-7. Add an aggregation to return the count of calls.
-8. Isolate the call count and durations by queue name and termination type.
-9. Comment out the filter for termination type of abandoned and termination type in the fields list
+6. <details><summary>Add filters to the main query filter to only return normal and abandoned calls</summary><textarea spellcheck="false" cols="70" rows="11">  filter: {
+      and: [
+        { channelType: { equals: telephony } }
+        {
+          or: [
+            { terminationType: { equals: "abandoned" } }
+            { terminationType: { equals: "normal" } }
+          ]
+        }
+      ]
+    }</textarea></details>
+7. <details><summary>Add an aggregation to return the count of calls.</summary><textarea spellcheck="false" cols="70" rows="1">{ field: "id", type: count, name: "Calls" }</textarea></details>
+8. <details><summary>Isolate the call count and durations by queue name and termination type.</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastQueue.gif"></details>
+9. Comment out the filter for termination type of abandoned and termination type in the fields list (`ctrl + /`)
 10.  
 
 
