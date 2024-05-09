@@ -8,14 +8,15 @@ title: "Getting Started"
 In this group of labs we will be exploring how to use GraphQL to get data from the Webex Contact Center's search API.
 
 ## Pre-requisites
-- You will need to have an administrator or supervisor account on the tenant from which you will accessing data. (**You cannot use an external or partner account for these labs**)
+- You will need to have an administrator or supervisor account on the tenant from which you will accessing data. 
+  <!-- (**You cannot use an external or partner account for these labs**) -->
 - You will need the ORG ID of the tenant from which you will accessing data.
 - You watched the introduction video so that you understand how to navigate the tools in the lab.
-- You have created a new profile in your browser to access the labs
+- It is recommended to create a new profile in your browser to access the labs
     >  [For Firefox](https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles){:target="_blank"}
     >
     >  [For Chrome](https://support.google.com/chrome/answer/2364824){:target="_blank"}
-- While not required, it is a good idea to use a tenant which has had some traffic so that you have data to query
+- While not required, it is a good idea to use a tenant which has had some recent traffic so that you have data to query
 
 ## Lab Objective
 - Get your Bearer token set as a global environment variable in Altair.
@@ -36,8 +37,8 @@ In this group of labs we will be exploring how to use GraphQL to get data from t
 10. Click Save
 
 ## Retrieve introspection information
-1. Copy the URL into Altair.
-   > <textarea spellcheck="false" cols="70">https://api.wxcc-us1.cisco.com/search</textarea>
+1. Copy the URL into Altair replacing `<orgID>` with your Org ID.
+   > <textarea spellcheck="false" cols="70">https://api.wxcc-us1.cisco.com/search?orgId=`<orgID>`</textarea>
 2. Click the Docs button (might need to toggle the guide tab)
 3. You should see the word Query in the third pane, click it.
 4. Click task and observe the available arguments and fields.
