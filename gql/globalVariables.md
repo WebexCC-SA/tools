@@ -5,7 +5,7 @@ title: "Adding Global Variables Into Your Query"
 
 
 # Introduction
-This lab servers as a supplement to show how to use Reportable Global Variables in your query as returned values, filters, and/or aggregations.
+This lab serves as a supplement to show how to use Reportable Global Variables in your query as returned values, filters, and/or aggregations.
 
 
 ## Pre-requisites
