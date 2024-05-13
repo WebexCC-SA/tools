@@ -75,7 +75,8 @@ Similarly to filtering with global variables you do not need to use aliases as y
 
 #### Count of a String Global Variable
 <textarea spellcheck="false" cols="70" rows="11">
-{
+aggregations: [
+  {
   field: "id"
   name: "nameOfVariable" 
   type: count
@@ -85,12 +86,14 @@ Similarly to filtering with global variables you do not need to use aliases as y
       value: { equals: "mySpecialValue" }
     }
   }
-}</textarea>
+} 
+]</textarea>
 
 
 #### Sum of an integer global variable
-<textarea spellcheck="false" cols="70" rows="4">
-{
+<textarea spellcheck="false" cols="70" rows="11">
+aggregations: [
+  {
   field: "integerGlobalVariables.value"
   name: "Sum of nameOfVariable"
   type: sum
@@ -99,7 +102,8 @@ Similarly to filtering with global variables you do not need to use aliases as y
       name: { equals: "nameOfVariable" }
     }
   }
-}</textarea>
+  }
+]</textarea>
 
 
 <!-- <textarea spellcheck="false" cols="70" rows="4"></textarea> -->
