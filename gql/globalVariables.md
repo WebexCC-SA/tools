@@ -5,7 +5,7 @@ title: "Adding Global Variables Into Your Query"
 
 
 # Introduction
-
+This lab servers as a supplement to show how to use Reportable Global Variables in your query as returned values, filters, and/or aggregations.
 
 
 ## Pre-requisites
@@ -58,7 +58,7 @@ Filtering with global variables is similar to using them in the returned fields 
       name: { equals: "nameOfVariable" }
       value: { equals: "mySpecialValue" }
     }
-  }</textarea></details>
+  }</textarea>
 
 #### Numeric Global Variables 
 <textarea spellcheck="false" cols="70" rows="6">
@@ -67,18 +67,17 @@ filter: {
     name: { equals: "nameOfDoubleVariable" }
     value: { gte: 17 }
   }
-}</textarea></details>
+}</textarea>
 
 
 ## Global Variable Aggregations
 Similarly to filtering with global variables you do not need to use aliases as you will define the label of the field which is returning the aggregation.  
 
 #### Count of a String Global Variable
-
 <textarea spellcheck="false" cols="70" rows="11">
 {
   field: "id"
-  name: "Volume_Catalogue_CAN count" #Name to be displayed in response
+  name: "nameOfVariable" 
   type: count
   filter: {
     stringGlobalVariables: {
@@ -86,7 +85,21 @@ Similarly to filtering with global variables you do not need to use aliases as y
       value: { equals: "mySpecialValue" }
     }
   }
-}</textarea></details>
+}</textarea>
 
 
-<!-- <textarea spellcheck="false" cols="70" rows="4"></textarea></details> -->
+#### Sum of an integer global variable
+<textarea spellcheck="false" cols="70" rows="4">
+{
+  field: "integerGlobalVariables.value"
+  name: "Sum of nameOfVariable"
+  type: sum
+  predicate: {
+    integerGlobalVariables: {
+      name: { equals: "nameOfVariable" }
+    }
+  }
+}</textarea>
+
+
+<!-- <textarea spellcheck="false" cols="70" rows="4"></textarea> -->
