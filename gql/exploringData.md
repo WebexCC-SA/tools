@@ -2,7 +2,6 @@
 title: "Exploring the Query"
 ---
 
-<!-- <style>.btn{border-radius:30px;padding:5px 10px; border:1px #2196F3}.btn:hover{background: #2196F3;color:white;}</style> -->
 
 # Introduction
 In this lab we will be exploring the available fields in task
