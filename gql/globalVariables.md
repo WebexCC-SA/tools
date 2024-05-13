@@ -49,5 +49,45 @@ title: "Adding Global Variables Into Your Query"
 }</textarea></details>
 
 ## Filtering with Global Variables
+Filtering with global variables is similar to using them in the returned fields section of the query without the need to use aliases.
+
+String Global Variables
+<textarea spellcheck="false" cols="70" rows="4">
+        filter: {
+          stringGlobalVariables: {
+            name: { equals: "nameOfVariable" }
+            value: { equals: "mySpecialValue" }
+          }
+        }</textarea></details>
+
+Numeric Global Variables 
+<textarea spellcheck="false" cols="70" rows="4">
+        filter: {
+          doubleGlobalVariables: {
+            name: { equals: "nameOfDoubleVariable" }
+            value: { gte: 17 }
+          }
+        }</textarea></details>
+
 
 ## Global Variable Aggregations
+Similarly to filtering with global variables you do not need to use aliases as you will define the label of the field which is returning the aggregation.  
+
+Count of a String Global Variable
+
+<textarea spellcheck="false" cols="70" rows="7">
+      { # Count of session id where the string global variable "nameOfVariable" is "mySpecialValue"
+        field: "id"
+        name: "Volume_Catalogue_CAN count" #Name to be displayed in response
+        type: count
+        filter: {
+          stringGlobalVariables: {
+            name: { equals: "nameOfVariable" }
+            value: { equals: "mySpecialValue" }
+          }
+        }
+      }
+</textarea></details>
+
+
+<!-- <textarea spellcheck="false" cols="70" rows="4"></textarea></details> -->
