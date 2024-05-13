@@ -8,7 +8,7 @@ title: "Getting Started"
 In this group of labs we will be exploring how to use GraphQL to get data from the Webex Contact Center's search API.
 
 ## Pre-requisites
-- You will need to have an administrator or supervisor access on the tenant from which you will be accessing data. 
+- You will need to have administrator access on the tenant from which you will be accessing data. 
   <!-- (**You cannot use an external or partner account for these labs**) -->
 - You will need the ORG ID of the tenant from which you will accessing data.
 - You watched the introduction video so that you understand how to navigate the tools in the lab.
@@ -74,7 +74,7 @@ In this group of labs we will be exploring how to use GraphQL to get data from t
     \}
     \}</textarea>
 
-3. Run the query by clicking the Send Request button (you may need to toggle or move the guide tab) or use teh keyboard shortcut ctrl+enter
+3. Run the query by clicking the Send Request button (you may need to toggle or move the guide tab) or use the keyboard shortcut ctrl+enter
 4. Copy an intervalStartTime value from the response pane
 5. Open the time tool and switch to the Lookup tab
 6. Paste the value and click Convert
