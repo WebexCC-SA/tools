@@ -53,12 +53,12 @@ Filtering with global variables is similar to using them in the returned fields 
 
 #### String Global Variables
 <textarea spellcheck="false" cols="70" rows="6">
-  filter: {
-    stringGlobalVariables: {
-      name: { equals: "nameOfVariable" }
-      value: { equals: "mySpecialValue" }
-    }
-  }</textarea>
+filter: {
+  stringGlobalVariables: {
+    name: { equals: "nameOfVariable" }
+    value: { equals: "mySpecialValue" }
+  }
+}</textarea>
 
 #### Numeric Global Variables 
 <textarea spellcheck="false" cols="70" rows="6">
@@ -74,11 +74,11 @@ filter: {
 Similarly to filtering with global variables you do not need to use aliases as you will define the label of the field which is returning the aggregation.  
 
 #### Count of a String Global Variable
-<textarea spellcheck="false" cols="70" rows="11">
+<textarea spellcheck="false" cols="70" rows="12">
 aggregations: [
   {
   field: "id"
-  name: "nameOfVariable" 
+  name: "Count of nameOfVariable" 
   type: count
   filter: {
     stringGlobalVariables: {
@@ -90,8 +90,8 @@ aggregations: [
 ]</textarea>
 
 
-#### Sum of an integer global variable
-<textarea spellcheck="false" cols="70" rows="11">
+#### Sum of an Integer Global Variable
+<textarea spellcheck="false" cols="70" rows="12">
 aggregations: [
   {
   field: "integerGlobalVariables.value"
@@ -105,5 +105,5 @@ aggregations: [
   }
 ]</textarea>
 
-
+### Click Next to continue to the next lesson
 <!-- <textarea spellcheck="false" cols="70" rows="4"></textarea> -->
