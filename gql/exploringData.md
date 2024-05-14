@@ -24,7 +24,7 @@ In this lab we will be exploring the available fields in task
 
 
 ## Add Query from Docs
-<button class="btn" onclick="vidPop('d2c7b761-9291-40ec-b76f-3cb25c657c83')">Launch Video</button> 
+<!-- <button class="btn" onclick="vidPop('d2c7b761-9291-40ec-b76f-3cb25c657c83')">Launch Video</button>  -->
 
 1.  <details><summary>Click + Add new in the top bar of Altair </summary>
          <img src="https://webexcc-sa.github.io/tools/gql/images/addNew.png"/>
