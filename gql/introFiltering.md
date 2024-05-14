@@ -45,7 +45,7 @@ While single filters can be useful, it is common to need more that one filter to
 
 
 
-<button class="btn" onclick="vidPop('d2c7b761-9291-40ec-b76f-3cb25c657c83')">Launch Video</button>
+<!-- <button class="btn" onclick="vidPop('d2c7b761-9291-40ec-b76f-3cb25c657c83')">Launch Video</button> -->
 
 
 ## Adding our first filter
