@@ -36,6 +36,9 @@ title: "Pebble Templates"
 >
 > <textarea readonly>\{\{now() | epoch(inMillis=true)\}\}</textarea><br>
 
+> Calculate the number of seconds a call has been in queue after capturing the current time as Epoch in seconds after placing the call in the queue
+>
+> <textarea readonly>\{\{now() | epoch - capturedTime \}\}</textarea><br>
 
 # Strings
 
