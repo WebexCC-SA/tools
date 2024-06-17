@@ -1,5 +1,6 @@
 ---
 title: "Pebble Templates"
+layout: default
 ---
 
 <style>
