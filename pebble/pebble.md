@@ -41,6 +41,10 @@ title: "Pebble Templates"
 >
 > <textarea readonly>\{\{now() | epoch - capturedTime \}\}</textarea><br>
 
+> Convert seconds to whole minutes rounding up if there is greater than 30 seconds. (90 seconds will return 2 minutes)
+>
+> <textarea readonly>\{\{ EWT/60 + (( EWT % 60) >= 30 ? 1 : 0 )  \}\}</textarea><br>
+
 # Strings
 
 > Return the last 10 characters of an ANI 
