@@ -2,7 +2,7 @@
 title: "Pebble Templates"
 
 ---
-
+{% include google-analytics.html %}
 <style>
     textarea{
         width:75%;
