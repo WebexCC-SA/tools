@@ -1,6 +1,8 @@
 ---
 title: 'Creating a BRE Lookup'
 --- 
+{% include google-analytics.html %}
+
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
