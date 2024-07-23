@@ -66,6 +66,14 @@ title: "Pebble Templates"
 >
 > <textarea readonly>\{\{string|split(",",string|split(",")|length-(string|split(",")|length-number))|last|split(",")|first\}\}</textarea><br>
 >
+> Or
+>
+> <textarea readonly>\{\{string|split(",")|slice(number-1,number)|first\}\}</textarea><br>
+>
+> Or With the addressable range starting at 0
+>
+> <textarea readonly>\{\{(string|split(","))[number]\}\}</textarea><br>
+>
 
 
 # Numbers, Logic, and Comparison
