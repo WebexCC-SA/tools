@@ -20,9 +20,14 @@ title: "Pebble Templates"
 > <textarea readonly>\{\{now()\}\}</textarea><br>
 >
 
-> Return the current date and time in a different time zone
+> Return the current time in a different time zone
 >
 > <textarea readonly>\{\{now() | date("HHmm", existingFormat="yyyy-MM-dd'T'HH:mm:ss", timeZone="America/New_York")\}\}</textarea><br>
+>
+
+> Return the current time as hours only in a different time zone
+>
+> <textarea readonly>\{\{now() | date("HH", existingFormat="yyyy-MM-dd'T'HH:mm:ss", timeZone="America/New_York")\}\}</textarea><br>
 >
 
 > Return the day of the week from the current time
