@@ -48,7 +48,7 @@ title: "Pebble Templates"
 
 > Convert milliseconds to whole minutes rounding up if the time is 30 seconds or more into the next minute. (90 seconds will return 2 minutes)
 >
-> <textarea readonly>\{\{ EWT/60000 + (( EWT % 60000) >= 30 ? 1 : 0 )  \}\}</textarea><br>
+> <textarea readonly>\{\{ EWT/60000 + (( EWT % 60000)/1000 >= 30 ? 1 : 0 )  \}\}</textarea><br>
 
 # Strings
 
