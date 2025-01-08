@@ -2,8 +2,18 @@
 title: 'Creating a BRE Lookup'
 --- 
 {% include google-analytics.html %}
-
-# Table of Contents
+<style>
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+copy::after{
+/* content: " " url(../assets/copy-svgrepo-com.svg);    */
+content: " \e14d";
+font-family: "Material Icons";
+}
+copy:hover::after {
+    color: #00bdeb;
+}
+</style>
+<!-- # Table of Contents
 
 - [Table of Contents](#table-of-contents)
   - [Before You Begin](#before-you-begin)
@@ -18,20 +28,39 @@ title: 'Creating a BRE Lookup'
     - [Adding, updating and removing data in bulk](#adding-updating-and-removing-data-in-bulk)
   - [Accessing the BRE data from your flow](#accessing-the-bre-data-from-your-flow)
   - [Parsing BRE data to a variable](#parsing-bre-data-to-a-variable)
-
----
+ -->
+<!-- --- -->
 
 ## Before You Begin
-Ask your CSM to create a BRE Table for you
+If you are creating a new lookup you will need to request that a table be created for you.
 
-You can access the BRE data here: https://rules.wxcc-us1.cisco.com/datasync
+If you want to see how to query the BRE from a flow, fill in the in form below then click [here](#accessing-the-bre-data-from-your-flow)
+
+If you are updating the data on your table [skip to the update data section](#adding-updating-and-removing-data-from-your-bre-table)
+
+
+<!-- Ask your CSM to create a BRE Table for you -->
+
+<!-- You can access the BRE data here: https://rules.wxcc-us1.cisco.com/datasync -->
 
 ---
 
 ## Fill in the form with the necessary details and click "Update Directions" 
 <form>
   
-  <label for="context">Table Name Created by CSM:</label><br>
+  <label for="dc-rules">Select your data center:</label><br>
+  <select name="dc-rules" id="dc-rules" onchange="updateRulesLink(value)">
+  <option value="Select your data center"></option>
+  <option value="https://bre.produs1.ciscoccservice.com/bre/">US1</option>
+  <option value="https://bre.prodeu1.ciscoccservice.com/bre/">EU1</option>
+  <option value="https://bre.prodeu2.ciscoccservice.com/bre/">EU2</option>
+  <option value="https://bre.prodanz1.ciscoccservice.com/bre/">ANZ1</option>
+  <option value="https://bre.prodca1.ciscoccservice.com/bre/">CA1</option>
+  <option value="https://bre.prodjp1.ciscoccservice.com/bre/">JP1</option>
+  <option value="https://bre.prodsg1.ciscoccservice.com/bre/">SG1</option>
+  </select><br>
+  
+  <label for="context">Lookup Table Name:</label><br>
   <input type="text" id="context" name="context"><br>
   
   <label for="label">Label Name (keep default unless you have a reason):</label><br>
@@ -39,6 +68,12 @@ You can access the BRE data here: https://rules.wxcc-us1.cisco.com/datasync
   
   <label for="key">Key to be used in flows:</label><br>
   <input type="text" id="key" name="key"><br>
+
+  <label for="lookup-var">Value or the variable used to pass the value to be looked up from your flow: (if you are using a variable remember to encapsulate it in double curly braces)</label><br>
+  <input type="text" id="lookup-var" name="lookup-var"><br>
+
+  <label for="data-var">Name of the variable you want the data returned to in your flow:</label><br>
+  <input type="text" id="data-var" name="data-var"><br>
 <br>
 
   <button onclick="update()">Update Directions</button>
@@ -49,16 +84,21 @@ You can access the BRE data here: https://rules.wxcc-us1.cisco.com/datasync
 ## Preparing the tenant to use the BRE:
 
  ⚠️ **Important note:** All BRE are settings, rules, attributes, and labels are case sensitive!
+ 
 
-#### Navigate the Business Rules 
-> In the BRE
+#### Navigate to the Business Rules 
+> If you are a full admin on the Org you can navigate to: <a id="rules-link" href="" target="_blank">Select your data center</a>
 >
+> If you are an external admin you must cross launch from the portal. 
+
+
+**The steps in this section only need to be completed once on your tenant**
 >
 >> Click Attributes in the top ribbon 
 >>
 >> Click Add  
 >> 
->>> Name: context (case sensitive) 
+>>> Name: <copy>context</copy> (case sensitive) 
 >>>
 >>> Data Type: Text
 >>>
@@ -68,15 +108,19 @@ You can access the BRE data here: https://rules.wxcc-us1.cisco.com/datasync
 >>
 >>> Click Add 
 >>>
->>> Name: <w class="label_out">routeInfo</w> (case sensitive)
+>>> Name: <copy><w class="label_out">routeInfo</w></copy> (case sensitive)
 >>>
 >>> Click Save
 >>
->> Click Context in the top ribbon
->>
->>> Click Add Context 
+---
+
+**The steps in this section need to be completed for all new lookups on your tenant**
+
+> Click Context in the top ribbon
+>
+>> Click Add Context 
 >>>
->>> Name: <w class = "context_out">Table/Context that your CSM created for you</w> (case sensitive) 
+>>> Name: <copy><w class = "context_out">Table/Context which was created for you</w></copy> (case sensitive) 
 >>> 
 >>> Attribute: context 
 >>>
@@ -88,26 +132,26 @@ You can access the BRE data here: https://rules.wxcc-us1.cisco.com/datasync
 >> Add the rules listed below
 
 
-#### Found rule
+#### Create the "Found" rule
 
 > Click on Add Rule (Editor)
 > 
-> Name: <w class="context_out"></w>Found
+> Name: <copy><w class="context_out"></w>Found </copy>
 > 
 > Active: True
 > 
-> Label: <w class = "label_out">routeInfo</w>
+> Label: <copy><w class = "label_out">routeInfo</w></copy>
 >
 > Priority: 100
 >
 > Copy the rule into the editor:
 >
->> <textarea id="foundruleDisplay" style="width: 1100px; height: 100px;" readonly>when
+>> <copy><textarea id="foundruleDisplay" style="width: 1100px; height: 100px;" readonly>when
 >>    c: Contact()
 >>    eval(c.getGlobalValuesManager().getAsString( c.getTenantId(), c.getAttribute("context") + "." + c.getAttribute("ani")) != null)
 >> then
 >>    c.putAttribute("routeInfo", c.getGlobalValuesManager().getAsString(c.getTenantId(), c.getAttribute("context") + "." + c.getAttribute("ani")));
->> end </textarea><br>
+>> end </textarea></copy><br>
 
 
 <ww id="foundRule" style="display: none" >when<br>
@@ -117,27 +161,28 @@ then<br>
     c.putAttribute("<w class = "label_out">routeInfo</w>", c.getGlobalValuesManager().getAsString(c.getTenantId(), c.getAttribute("context") + "." + c.getAttribute("<w class = "key_out">ani</w>")));<br>
 end<br> </ww>
 
-#### NotFound rule
+#### Create the "NotFound" rule
 
 > Click on Add Rule (Editor)
 > 
-> Name: <w class="context_out"></w>Notfound
+> Name: <copy><w class="context_out"></w>Notfound</copy>
 > 
 > Active: True
 > 
-> Label: <w class = "label_out">routeInfo</w>
->
+> Label: <copy><w class = "label_out">routeInfo</w></copy>
 > Priority: 99
 >
 > Copy the rule into the editor:
 >
 >
->> <textarea id="notfoundruleDisplay" style="width: 1100px; height: 100px;" readonly>when
+>> <copy><textarea id="notfoundruleDisplay" style="width: 1100px; height: 100px;" readonly>when
 >>    c: Contact()
 >>    eval(c.getGlobalValuesManager().getAsString( c.getTenantId(), c.getAttribute("context") + "." + c.getAttribute("ani")) == null)
 >> then
 >>   c.putAttribute("routeInfo", "NotFound");
->> end </textarea><br>
+>> end </textarea></copy><br>
+
+---
 
 <ww id="notfoundRule" style="display: none" >
 when<br>
@@ -149,8 +194,23 @@ when<br>
 </ww>
 
 ## Adding, updating, and removing data from your BRE table
+  <form>
+  <label for="dc-data">Select your data center:</label><br>
+  <select name="dc-data" id="dc-data" onchange="updateDataLink(value)">
+  <option value="Select your data center"></option>
+  <option value="https://bre-datasync.produs1.ciscoccservice.com/datasync/">US1</option>
+  <option value="https://bre-datasync.prodeu1.ciscoccservice.com/datasync/">EU1</option>
+  <option value="https://bre-datasync.prodeu2.ciscoccservice.com/datasync/">EU2</option>
+  <option value="https://bre-datasync.prodanz1.ciscoccservice.com/datasync/">ANZ1</option>
+  <option value="https://bre-datasync.prodca1.ciscoccservice.com/datasync/">CA1</option>
+  <option value="https://bre-datasync.prodjp1.ciscoccservice.com/datasync/">JP1</option>
+  <option value="https://bre-datasync.prodsg1.ciscoccservice.com/datasync/">SG1</option>
+  </select>
+</form>
+
 ### Logging in
-> Navigate to [https://rules.wxcc-us1.cisco.com/datasync/login](https://rules.wxcc-us1.cisco.com/datasync/login){:target="_blank"}
+> Navigate to <a id="data-link" href="" target="_blank">Select your data center</a>
+<!-- > [https://rules.wxcc-us1.cisco.com/datasync/login](https://rules.wxcc-us1.cisco.com/datasync/login){:target="_blank"} -->
 >
 > <details> <summary>Click datasync link</summary>
 > <img style="position: relative" src="BRE_Login.jpg"/>
@@ -184,7 +244,7 @@ when<br>
 >
 > Clicking Add Data will let you add additional rows
 >
-> Clicking the Remove button will remove teh row from your Add/Update
+> Clicking the Remove button will remove the row from your Add/Update
 >
 > Click Submit to save the updates
 >
@@ -224,16 +284,21 @@ when<br>
 > <img style="position: relative; width: 465px; height: 357px;" src="BRE_Params.jpg"/>
 > <w style="position: absolute; top: 27%; left:53%; color: rgb(0,0,0);" class = "context_out">table</w>
 > <w style="position: absolute; top: 41%; left: 8%; color: rgb(0,0,0)" class = "key_out">ani</w>
-> <w style="position: absolute; top: 41%; left: 53%; color: rgb(0,0,0)">your lookup value</w>
+> <w style="position: absolute; top: 41%; left: 53%; color: rgb(0,0,0)" class="lookup-var_out">your lookup value</w>
 > </div>
 
 ---
 
 
 ## Parsing BRE data to a variable
+> <div style="width: 457px; height: 216px;position:relative">
+>
 > <img style="position: relative" src="BRE_Parse.jpg"/>
-<w style="position: relative; top: -80px; left:55px; color: rgb(0,0,0)">$.</w>
-<w style="position: relative; top: -80px; left:52px; color: rgb(0,0,0)" class = label_out>routeInfo</w>
+> <w style="position: absolute; top: 65px; left:40px; color: rgb(0,0,0)" class="data-var_out">YourOutputVariable</w>
+<!-- style="position: absolute; top: 160px; left:52px; color: rgb(0,0,0)" -->
+> <w style="position: absolute; top: 140px; left:40px; color: rgb(0,0,0)">$.
+> <w class = label_out>routeInfo</w></w>
+> </div>
 
 ---
 
@@ -248,4 +313,26 @@ when<br>
   document.getElementById("foundruleDisplay").value = document.getElementById("foundRule").innerText;
   document.getElementById("notfoundruleDisplay").value = document.getElementById("notfoundRule").innerText;
   event.preventDefault()}
+  [].forEach.call(document.getElementsByTagName("copy"),function(el){el.addEventListener("click",function(event){
+    if(event.target.children[0] !== undefined && event.target.tagName == "COPY" && event.target.children[0].tagName == "TEXTAREA"){navigator.clipboard.writeText(event.target.children[0].value)}
+    else if(event.target.tagName == "TEXTAREA"){navigator.clipboard.writeText(event.target.value)}
+    else if(event.target.tagName == "COPY"){navigator.clipboard.writeText(event.target.innerText)}
+    else if(event.target.tagName == "W"){navigator.clipboard.writeText(event.target.parentNode.innerText)}
+  })})
+  function updateDataLink(url){
+    document.getElementById('data-link').text = url
+    if (url !== "Select your data center") {
+    document.getElementById('data-link').href = url
+    } else {
+      document.getElementById('data-link').href = ''
+    }
+  }
+  function updateRulesLink(url){
+    document.getElementById('rules-link').text = url
+    if (url !== "Select your data center") {
+    document.getElementById('rules-link').href = url
+    } else {
+      document.getElementById('rules-link').href = ''
+    }
+  }
 </script> 
