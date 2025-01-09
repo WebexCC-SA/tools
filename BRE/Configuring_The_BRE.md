@@ -5,7 +5,6 @@ title: 'Creating a BRE Lookup'
 <style>
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 copy::after{
-/* content: " " url(../assets/copy-svgrepo-com.svg);    */
 content: " \e14d";
 font-family: "Material Icons";
 }
@@ -69,7 +68,7 @@ If you are updating the data on your table [skip to the update data section](#ad
   <label for="key">Key to be used in flows:</label><br>
   <input type="text" id="key" name="key"><br>
 
-  <label for="lookup-var">Value or the variable used to pass the value to be looked up from your flow: (if you are using a variable remember to encapsulate it in double curly braces)</label><br>
+  <label for="lookup-var">Value or the variable used to pass the value to be looked up from your flow <br> (if you are using a variable remember to encapsulate it in double curly braces):</label><br>
   <input type="text" id="lookup-var" name="lookup-var"><br>
 
   <label for="data-var">Name of the variable you want the data returned to in your flow:</label><br>
@@ -87,9 +86,14 @@ If you are updating the data on your table [skip to the update data section](#ad
  
 
 #### Navigate to the Business Rules 
-> If you are a full admin on the Org you can navigate to: <a id="rules-link" href="" target="_blank">Select your data center</a>
+> If you are a full admin on the Org you can cross launch or navigate directly to: <a id="rules-link" href="" target="_blank">Select your data center</a>
 >
-> If you are an external admin you must cross launch from the portal. 
+> If you are an external admin you must cross launch from the portal.
+>
+> <details> <summary>How to cross launch to BRE Rules</summary>
+>
+> <img style="position: relative; width: 50%;" src="BRE_CrossLaunch.gif"/>
+> </details>
 
 
 **The steps in this section only need to be completed once on your tenant**
@@ -170,6 +174,7 @@ end<br> </ww>
 > Active: True
 > 
 > Label: <copy><w class = "label_out">routeInfo</w></copy>
+> 
 > Priority: 99
 >
 > Copy the rule into the editor:
@@ -212,18 +217,18 @@ when<br>
 > Navigate to <a id="data-link" href="" target="_blank">Select your data center</a>
 <!-- > [https://rules.wxcc-us1.cisco.com/datasync/login](https://rules.wxcc-us1.cisco.com/datasync/login){:target="_blank"} -->
 >
-> <details> <summary>Click datasync link</summary>
-> <img style="position: relative" src="BRE_Login.jpg"/>
+> <details> <summary>Click the cluster to login</summary>
+> <img style="position: relative" src="BRE_Login_New.jpg"/>
 >
 > </details>
->
+<!-- >
 >
 >> Login using your tenant admin credentials if prompted
 >
 > <details> <summary>Select Site A</summary>
 > <img style="position: relative" src="BRE_Site.jpg"/>
->
-> </details>
+> -->
+<!-- > </details> -->
 >
 > ---
 
@@ -244,20 +249,17 @@ when<br>
 >
 > Clicking Add Data will let you add additional rows
 >
-> Clicking the Remove button will remove the row from your Add/Update
+> Clicking the Remove button will remove the row from your Add/Update 
+>
+> > ⚠️ Note this will not delete entries from the BRE.  If you need to delete entries, you must use the CSV method in the next section.
 >
 > Click Submit to save the updates
 >
 > ---
 
 
-### Adding, updating and removing data in bulk
->
-> <details> <summary>Click Upload BRE CSV data</summary>
-> <img style="position: relative" src="BRE_AddDataBulk.jpg"/>
->
-> </details>
->
+### Adding, updating, and removing data in bulk
+
 >
 > Create a CSV file with 3 columns
 >
@@ -268,11 +270,25 @@ when<br>
 > > Value: the value you want to be returned
 > >
 > > Action: the action you want taken on the key (ADD, UPDATE, DELETE)
+> >
+> > <details> <summary>Example</summary>
+> > <img style="position: relative" src="BRE_CSV_Example.jpg"/>
+> > </details>
+> >
 >
+>
+> <details> <summary>Click Upload BRE CSV data</summary>
+> <img style="position: relative" src="BRE_AddDataBulk.jpg"/>
+>
+> </details>
 >
 > Select your tenant name from the Tenant Name drop down
 >
 > Select the table name you want to add/update data to in the BRE Lookup Type drop down
+>
+> Browse to select your CSV
+>
+> Click Upload
 >
 > ---
 
