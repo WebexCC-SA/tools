@@ -312,8 +312,7 @@ when<br>
 > <img style="position: relative" src="BRE_Parse.jpg"/>
 > <w style="position: absolute; top: 65px; left:40px; color: rgb(0,0,0)" class="data-var_out">YourOutputVariable</w>
 <!-- style="position: absolute; top: 160px; left:52px; color: rgb(0,0,0)" -->
-> <w style="position: absolute; top: 140px; left:40px; color: rgb(0,0,0)">$.
-> <w class = label_out>routeInfo</w></w>
+> <w style="position: absolute; top: 140px; left:40px; color: rgb(0,0,0)">$.<w class = label_out>routeInfo</w></w>
 > </div>
 
 ---
