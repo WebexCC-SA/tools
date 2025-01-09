@@ -92,7 +92,7 @@ If you are updating the data on your table [skip to the update data section](#ad
 >
 > <details> <summary>How to cross launch to BRE Rules</summary>
 >
-> <img style="position: relative; width: 50%;" src="BRE_CrossLaunch.gif"/>
+> <img style="position: relative" src="BRE_CrossLaunch.gif"/>
 > </details>
 
 
