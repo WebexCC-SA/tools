@@ -1,0 +1,195 @@
+<h1 id="introduction">Introduction</h1>
+<p>In this lab we will be combining all that we have learned in the previous labs to add aggregations to a query.  As you progress through the lab, try to figure out how to achieve the the step before uncovering the answer.</p>
+
+<h2 id="pre-requisites">Pre-requisites</h2>
+<ul>
+  <li>Complete Getting Started</li>
+  <li>Complete Exploring the Query</li>
+  <li>Complete Introduction to Filtering</li>
+</ul>
+
+<h2 id="lab-objective">Lab Objective</h2>
+
+<ul>
+  <li>Understand which aggregations are available for a query</li>
+  <li>Properly format aggregations</li>
+  <li>Use compound filters</li>
+  <li>Isolate our aggregation data to answer common contact center questions</li>
+  <li>Use filters in aggregations</li>
+</ul>
+
+<h2 id="exploring-aggregation-options">Exploring Aggregation Options</h2>
+<ol>
+  <li>
+    <details><summary>Click + Add new in the top bar of Altair </summary>
+      <img src="https://webexcc-sa.github.io/tools/gql/images/addNew.png" />
+      </details>
+  </li>
+  <li>Open the Docs tab and navigate to Query &gt; task &gt; aggregations
+    <ul>
+      <li>(Note that if you click into “aggregation” instead of “aggregations” it shows as deprecating soon, so we will not be using it.)</li>
+    </ul>
+  </li>
+  <li>Note the list of fields that you have available to construct your aggregation
+    <ul>
+      <li>The required fields are:
+        <ul>
+          <li>field - The field on which the aggregation operation is to be done</li>
+          <li>type - The type of aggregation operation</li>
+          <li>name - The name field of the output aggregation</li>
+        </ul>
+      </li>
+      <li>
+        <p>If you wanted to return a count of tasks and name it “All Tasks”:</p>
+
+        <textarea spellcheck="false" cols="70" rows="2">aggregations: [{ field: "id", type: count, name: "All Tasks" }]</textarea>
+      </li>
+      <li>
+        <p>If you wanted to also return a count of tasks which were calls and name it “Calls”:</p>
+
+        <textarea spellcheck="false" cols="70" rows="9">aggregations: [
+{ field: "id", type: count, name: "All Tasks" }
+{
+field: "id"
+type: count 
+name: "Calls" 
+filter:{channelType:{equals:telephony}}
+}
+]</textarea>
+
+        <ul>
+          <li>Note that you can separate via a comma or new line.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="gathering-some-statistics">Gathering some statistics</h2>
+<ol>
+  <li>Copy this query to return the average queue duration
+    <ul>
+      <li>
+        <p>Use the Time Widget to retrieve a weeks worth of data and run the query</p>
+
+        <textarea spellcheck="false" cols="70" rows="19">{
+task(
+ from: "____"
+ to: "____"
+ timeComparator: createdTime
+ filter: {}
+ aggregations: [
+ { field: "queueDuration", type: average, name: "Average Queue Duration" }
+ ]
+) {
+ tasks {
+ aggregation {
+   name
+   value
+ }
+ }
+}
+}</textarea>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <details><summary>Add the min and max queue duration and run the query</summary><textarea spellcheck="false" cols="70" rows="6">aggregations: [
+   { field: "queueDuration", type: average, name: "Average Queue Duration" }
+   { field: "queueDuration", type: min, name: "Minimum Queue Duration" }
+   { field: "queueDuration", type: max, name: "Maximum Queue Duration" }
+ ]</textarea> </details>
+  </li>
+  <li>
+    <details><summary>Isolate the queue durations by channelType by adding channelType in the fields list directly above aggregation and run the query</summary><img src="https://webexcc-sa.github.io/tools/gql/images/channelType.gif" /></details>
+  </li>
+  <li>
+    <details><summary>Let's filter the entire query to only return telephony tasks using the report filter and remove channelType from the fields list in task</summary><img src="https://webexcc-sa.github.io/tools/gql/images/channelTypefilter.gif" /></details>
+  </li>
+  <li>
+    <details><summary>Isolate the queue durations by terminationType</summary><img src="https://webexcc-sa.github.io/tools/gql/images/terminationType.gif" /></details>
+
+    <ul>
+      <li>What is the average time to abandon?</li>
+      <li>What is the average speed of answer?</li>
+      <li>What is the maximum time in queue?</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="delving-into-the-data">Delving into the Data</h2>
+<ol>
+  <li>
+    <details><summary>Add filters to the main query filter to only return normal and abandoned calls</summary><textarea spellcheck="false" cols="70" rows="11">  filter: {
+   and: [
+     { channelType: { equals: telephony } }
+     {
+       or: [
+         { terminationType: { equals: "abandoned" } }
+         { terminationType: { equals: "normal" } }
+       ]
+     }
+   ]
+ }</textarea></details>
+  </li>
+  <li>
+    <details><summary>Add an aggregation to return the count of calls.</summary><textarea spellcheck="false" cols="70" rows="1">{ field: "id", type: count, name: "Calls" }</textarea></details>
+  </li>
+  <li>
+    <details><summary>Isolate the call count and durations by queue name and termination type.</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastQueue.gif" /></details>
+  </li>
+  <li>Comment out the filter for termination type of abandoned, the aggregation for Minimum Queue Duration, and termination type in the fields list (<code class="language-plaintext highlighter-rouge">ctrl + /</code>)</li>
+  <li>
+    <details><summary>Add max and average for connectedDuration to your aggregations.</summary><textarea spellcheck="false" cols="70" rows="10">  {
+     field: "connectedDuration"
+     type: max
+     name: "Maximum Connected Duration"
+   }
+   {
+     field: "connectedDuration"
+     type: average
+     name: "Average Connected Duration"
+   }</textarea></details>
+  </li>
+  <li>
+    <details><summary>Isolate the queue aggregations to additionally be broken up by lastWrapupCodeName</summary><img src="https://webexcc-sa.github.io/tools/gql/images/lastWrapupCodeName.png" /></details>
+  </li>
+  <li>
+    <details><summary>Add an aggregation to return a count of callback tasks.</summary><textarea spellcheck="false" cols="70" rows="6">
+   {
+     field: "isCallback"
+     type: count
+     name: "callback"
+     filter: { isCallback: { equals: true } }
+   }</textarea></details>
+  </li>
+  <li>
+    <details><summary>Bifurcate the max and average queue duration aggregations on if the call was a callback without splitting the Connected Duration aggregations.</summary><textarea spellcheck="false" cols="70" rows="24">  {
+     field: "queueDuration"
+     type: max
+     name: "Callback Maximum Queue Duration"
+     filter: { isCallback: { equals: true } }
+   }
+   {
+     field: "queueDuration"
+     type: average
+     name: "Callback Average Queue Duration"
+     filter: { isCallback: { equals: true } }
+   }
+   {
+     field: "queueDuration"
+     type: max
+     name: "Maximum Queue Duration No Callback"
+     filter: { isCallback: { equals: false } }
+   }
+   {
+     field: "queueDuration"
+     type: average
+     name: "Average Queue Duration No Callback"
+     filter: { isCallback: { equals: false } }
+   }</textarea></details>
+  </li>
+</ol>
+
+<h3 id="click-next-to-continue-to-the-next-lesson">Click Next to continue to the next lesson</h3>
+<!-- <textarea spellcheck="false" cols="70" rows="4"></textarea> -->

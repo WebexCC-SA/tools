@@ -1,0 +1,290 @@
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-EWYZYS1K7E"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EWYZYS1K7E');
+</script>
+
+<h1 id="table-of-contents">Table of Contents</h1>
+
+<ul>
+  <li><a href="#table-of-contents">Table of Contents</a>
+    <ul>
+      <li><a href="#before-you-begin">Before You Begin</a></li>
+      <li><a href="#fill-in-the-form-with-the-necessary-details-and-click-update-directions">Fill in the form with the necessary details and click “Update Directions”</a></li>
+      <li><a href="#preparing-the-tenant-to-use-the-bre">Preparing the tenant to use the BRE:</a>
+        <ul>
+          <li><a href="#navigate-the-business-rules">Navigate the Business Rules</a></li>
+          <li><a href="#found-rule">Found rule</a></li>
+          <li><a href="#notfound-rule">NotFound rule</a></li>
+        </ul>
+      </li>
+      <li><a href="#adding-updating-and-removing-data-from-your-bre-table">Adding, updating, and removing data from your BRE table</a>
+        <ul>
+          <li><a href="#logging-in">Logging in</a></li>
+          <li><a href="#adding-and-updating-data">Adding and updating data</a></li>
+          <li><a href="#adding-updating-and-removing-data-in-bulk">Adding, updating and removing data in bulk</a></li>
+        </ul>
+      </li>
+      <li><a href="#accessing-the-bre-data-from-your-flow">Accessing the BRE data from your flow</a></li>
+      <li><a href="#parsing-bre-data-to-a-variable">Parsing BRE data to a variable</a></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>Ask your CSM to create a BRE Table for you</p>
+
+<p>You can access the BRE data here: https://rules.wxcc-us1.cisco.com/datasync</p>
+
+<hr />
+
+<h2 id="fill-in-the-form-with-the-necessary-details-and-click-update-directions">Fill in the form with the necessary details and click “Update Directions”</h2>
+<form>
+  
+  <label for="context">Table Name Created by CSM:</label><br />
+  <input type="text" id="context" name="context" /><br />
+  
+  <label for="label">Label Name (keep default unless you have a reason):</label><br />
+  <input type="text" id="label" name="label" value="routeInfo" /><br />
+  
+  <label for="key">Key to be used in flows:</label><br />
+  <input type="text" id="key" name="key" /><br />
+<br />
+
+  <button onclick="update()">Update Directions</button>
+</form>
+
+<hr />
+
+<h2 id="preparing-the-tenant-to-use-the-bre">Preparing the tenant to use the BRE:</h2>
+
+<p>⚠️ <strong>Important note:</strong> All BRE are settings, rules, attributes, and labels are case sensitive!</p>
+
+<h4 id="navigate-the-business-rules">Navigate the Business Rules</h4>
+<blockquote>
+  <p>In the BRE</p>
+
+  <blockquote>
+    <p>Click Attributes in the top ribbon</p>
+
+    <p>Click Add</p>
+
+    <blockquote>
+      <p>Name: context (case sensitive)</p>
+
+      <p>Data Type: Text</p>
+
+      <p>Click Save</p>
+    </blockquote>
+
+    <p>Click Labels in the top ribbon</p>
+
+    <blockquote>
+      <p>Click Add</p>
+
+      <p>Name: <w class="label_out">routeInfo</w> (case sensitive)</p>
+
+      <p>Click Save</p>
+    </blockquote>
+
+    <p>Click Context in the top ribbon</p>
+
+    <blockquote>
+      <p>Click Add Context</p>
+
+      <p>Name: <w class="context_out">Table/Context that your CSM created for you</w> (case sensitive)</p>
+
+      <p>Attribute: context</p>
+
+      <p>Click Save</p>
+    </blockquote>
+
+    <p>Click on the line of the Context you just created (<w class="context_out"></w>)</p>
+
+    <p>Add the rules listed below</p>
+  </blockquote>
+</blockquote>
+
+<h4 id="found-rule">Found rule</h4>
+
+<blockquote>
+  <p>Click on Add Rule (Editor)</p>
+
+  <p>Name: <w class="context_out"></w>Found</p>
+
+  <p>Active: True</p>
+
+  <p>Label: <w class="label_out">routeInfo</w></p>
+
+  <p>Priority: 100</p>
+
+  <p>Copy the rule into the editor:</p>
+
+  <blockquote>
+    <textarea id="foundruleDisplay" style="width: 1100px; height: 100px;" readonly="">when
+   c: Contact()
+   eval(c.getGlobalValuesManager().getAsString( c.getTenantId(), c.getAttribute("context") + "." + c.getAttribute("ani")) != null)
+then
+   c.putAttribute("routeInfo", c.getGlobalValuesManager().getAsString(c.getTenantId(), c.getAttribute("context") + "." + c.getAttribute("ani")));
+end </textarea>
+    <p><br /></p>
+  </blockquote>
+</blockquote>
+
+<ww id="foundRule" style="display: none">when<br />
+    c: Contact()<br />
+    eval(c.getGlobalValuesManager().getAsString( c.getTenantId(), c.getAttribute("context") + "." + c.getAttribute("<w class="key_out">ani</w>")) != null)<br />
+then<br />
+    c.putAttribute("<w class="label_out">routeInfo</w>", c.getGlobalValuesManager().getAsString(c.getTenantId(), c.getAttribute("context") + "." + c.getAttribute("<w class="key_out">ani</w>")));<br />
+end<br /> </ww>
+
+<h4 id="notfound-rule">NotFound rule</h4>
+
+<blockquote>
+  <p>Click on Add Rule (Editor)</p>
+
+  <p>Name: <w class="context_out"></w>Notfound</p>
+
+  <p>Active: True</p>
+
+  <p>Label: <w class="label_out">routeInfo</w></p>
+
+  <p>Priority: 99</p>
+
+  <p>Copy the rule into the editor:</p>
+
+  <blockquote>
+    <textarea id="notfoundruleDisplay" style="width: 1100px; height: 100px;" readonly="">when
+   c: Contact()
+   eval(c.getGlobalValuesManager().getAsString( c.getTenantId(), c.getAttribute("context") + "." + c.getAttribute("ani")) == null)
+then
+  c.putAttribute("routeInfo", "NotFound");
+end </textarea>
+    <p><br /></p>
+  </blockquote>
+</blockquote>
+
+<ww id="notfoundRule" style="display: none">
+when<br />
+    c: Contact()<br />
+    eval(c.getGlobalValuesManager().getAsString( c.getTenantId(), c.getAttribute("context") + "." + c.getAttribute("<w class="key_out">ani</w>")) == null)<br />
+ then<br />
+   c.putAttribute("<w class="label_out">routeInfo</w>", "NotFound");<br />
+ end<br />
+</ww>
+
+<h2 id="adding-updating-and-removing-data-from-your-bre-table">Adding, updating, and removing data from your BRE table</h2>
+<h3 id="logging-in">Logging in</h3>
+<blockquote>
+  <p>Navigate to <a href="https://rules.wxcc-us1.cisco.com/datasync/login" target="_blank">https://rules.wxcc-us1.cisco.com/datasync/login</a></p>
+
+  <details> <summary>Click datasync link</summary>
+<img style="position: relative" src="BRE_Login.jpg" />
+
+</details>
+
+  <blockquote>
+    <p>Login using your tenant admin credentials if prompted</p>
+  </blockquote>
+
+  <details> <summary>Select Site A</summary>
+<img style="position: relative" src="BRE_Site.jpg" />
+
+</details>
+
+  <hr />
+</blockquote>
+
+<h3 id="adding-and-updating-data">Adding and updating data</h3>
+<blockquote>
+
+  <details> <summary>Click Add BRE Data</summary>
+<img style="position: relative" src="BRE_AddData.jpg" />
+
+</details>
+
+  <p>Select your tenant name from the Tenant Name drop down</p>
+
+  <p>Select the table name you want to add/update data to in the BRE Lookup Type drop down</p>
+
+  <p>Add the value you will be looking up in the Key field</p>
+
+  <p>Add the value you want to be returned in the Value field</p>
+
+  <p>Clicking Add Data will let you add additional rows</p>
+
+  <p>Clicking the Remove button will remove teh row from your Add/Update</p>
+
+  <p>Click Submit to save the updates</p>
+
+  <hr />
+</blockquote>
+
+<h3 id="adding-updating-and-removing-data-in-bulk">Adding, updating and removing data in bulk</h3>
+<blockquote>
+
+  <details> <summary>Click Upload BRE CSV data</summary>
+<img style="position: relative" src="BRE_AddDataBulk.jpg" />
+
+</details>
+
+  <p>Create a CSV file with 3 columns</p>
+
+  <blockquote>
+    <p>⚠️ CSV must have headers in the file or the first row will be skipped</p>
+
+    <p>Key: the value you will be looking up</p>
+
+    <p>Value: the value you want to be returned</p>
+
+    <p>Action: the action you want taken on the key (ADD, UPDATE, DELETE)</p>
+  </blockquote>
+
+  <p>Select your tenant name from the Tenant Name drop down</p>
+
+  <p>Select the table name you want to add/update data to in the BRE Lookup Type drop down</p>
+
+  <hr />
+</blockquote>
+
+<h2 id="accessing-the-bre-data-from-your-flow">Accessing the BRE data from your flow</h2>
+<blockquote>
+  <div style="width: 465px; height: 357px;position:relative">
+<img style="position: relative; width: 465px; height: 357px;" src="BRE_Params.jpg" />
+<w style="position: absolute; top: 27%; left:53%; color: rgb(0,0,0);" class="context_out">table</w>
+<w style="position: absolute; top: 41%; left: 8%; color: rgb(0,0,0)" class="key_out">ani</w>
+<w style="position: absolute; top: 41%; left: 53%; color: rgb(0,0,0)">your lookup value</w>
+</div>
+</blockquote>
+
+<hr />
+
+<h2 id="parsing-bre-data-to-a-variable">Parsing BRE data to a variable</h2>
+<blockquote>
+  <p><img style="position: relative" src="BRE_Parse.jpg" /></p>
+</blockquote>
+<w style="position: relative; top: -80px; left:55px; color: rgb(0,0,0)">$.</w>
+<w style="position: relative; top: -80px; left:52px; color: rgb(0,0,0)" class="label_out">routeInfo</w>
+
+<hr />
+
+<script>
+    function update(){them = Array.from(document.querySelectorAll("input")).reduce((acc, input) => ({...acc, [input.id + "_out"] : input.value}),{});
+	Object.entries(them).forEach((entry) => {
+    Array.from(document.getElementsByClassName(entry[0])).forEach((element,index) => 
+    {
+      console.log(document.getElementsByClassName(entry[0])[index].innerHTML); 
+      document.getElementsByClassName(entry[0])[index].innerHTML = entry[1];
+    })});
+  document.getElementById("foundruleDisplay").value = document.getElementById("foundRule").innerText;
+  document.getElementById("notfoundruleDisplay").value = document.getElementById("notfoundRule").innerText;
+  event.preventDefault()}
+</script>
+
