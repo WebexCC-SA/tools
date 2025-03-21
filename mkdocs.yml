@@ -1,0 +1,35 @@
+site_name: WxCC Tools
+site_url: https://webexcc-sa.github.io/tools
+theme:
+  name: material
+  logo: assets/template/webexLogo91.png
+  favicon: assets/template/webex75.png
+  custom_dir: overrides
+  palette:
+  # Palette toggle for light mode
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    primary: custom
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  # Palette toggle for dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: custom
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+extra:
+  homepage: https://webexcc-sa.github.io
+  analytics:
+      provider: google
+      property: G-EWYZYS1K7E
+markdown_extensions:
+  - md_in_html
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - tables
