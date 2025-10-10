@@ -3,9 +3,11 @@ import { proxyCustomElement, HTMLElement, h } from '@stencil/core/internal/clien
 const wxccTimeCss = ".frame{position:absolute;z-index:5;height:250px;background:#ccc;left:40%;}label{color:black}header{background:#2196F3;color:white;text-align:center;padding:10px;margin-top:0}.widgets{padding:10px;margin-top:20px}.title{font-size:1.5rem}.widgets select,.widgets input{float:right}svg{fill:#c0c0c0}svg:hover{fill:#f0efef}.hideMe{float:left;margin-top:.25rem;cursor:pointer}.hidden{display:none}p{margin:1rem}#tabs{display:flex;justify-content:center;width:100%;margin:1rem 0;}#tabs button{width:30%;background:white;color:black;text-align:center;border:1px solid  #2196F3;font:inherit;padding:0.15rem 0}#tabs :nth-child(1){border-top-left-radius:20px;border-bottom-left-radius:20px}#tabs :nth-last-child(1){border-top-right-radius:20px;border-bottom-right-radius:20px}#tabs button.active,#tabs button:hover,#tabs button:active{background:#2196F3;color:white;border:1px solid  #2196F3}#tabs button:focus{outline:none}#lup{float:left;padding:1rem}#lup button{float:right;background:white;color:black;border-radius:20px;text-align:center;border:1px solid black;font:inherit;padding:.1rem 1rem;margin-left:.25rem}#lup button:hover{background:#2196F3;color:white}#tmstp{background-color:#e9e7e7}";
 
 const wxccTime = /*@__PURE__*/ proxyCustomElement(class wxccTime extends HTMLElement {
-    constructor() {
+    constructor(registerHost) {
         super();
-        this.__registerHost();
+        if (registerHost !== false) {
+            this.__registerHost();
+        }
         this.__attachShadow();
         this.td = new Date();
         this.fd = new Date();
@@ -80,7 +82,7 @@ const wxccTime = /*@__PURE__*/ proxyCustomElement(class wxccTime extends HTMLEle
         ];
     }
     static get style() { return wxccTimeCss; }
-}, [1, "wxcc-time", {
+}, [257, "wxcc-time", {
         "td": [32],
         "fd": [32],
         "toSelected": [32],

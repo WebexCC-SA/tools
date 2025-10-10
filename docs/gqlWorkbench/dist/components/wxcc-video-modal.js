@@ -3,9 +3,11 @@ import { proxyCustomElement, HTMLElement, h } from '@stencil/core/internal/clien
 const wxccVideoModalCss = "#cover{position:fixed;top:0;left:0;width:100%;height:100vh;z-index:9;display:none;opacity:0;transition:opacity 0.5s ease-out}#cover.covered{display:block}#my-div{position:absolute;z-index:200;background-color:#f1f1f1;text-align:center;border:1px solid #d3d3d3;top:25%;left:25%}#my-div-header{padding:10px;z-index:10;background-color:#2196F3;color:#fff;height:20px}.sizeBar{float:right;cursor:pointer}.bigBoi{width:50%;height:50%}.hidden{display:none}.hideMe{float:right;cursor:pointer}#move{float:left;cursor:grab}svg{fill:#c0c0c0}svg:hover{fill:#f0efef;}";
 
 const wxccVideoModal = /*@__PURE__*/ proxyCustomElement(class wxccVideoModal extends HTMLElement {
-    constructor() {
+    constructor(registerHost) {
         super();
-        this.__registerHost();
+        if (registerHost !== false) {
+            this.__registerHost();
+        }
         this.__attachShadow();
         this.vidBig = true;
         this.btnLable = "Bigger";
@@ -48,7 +50,7 @@ const wxccVideoModal = /*@__PURE__*/ proxyCustomElement(class wxccVideoModal ext
         ];
     }
     static get style() { return wxccVideoModalCss; }
-}, [1, "wxcc-video-modal", {
+}, [257, "wxcc-video-modal", {
         "vidId": [1537, "vid-id"],
         "vidBig": [32],
         "btnLable": [32],

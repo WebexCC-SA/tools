@@ -1,6 +1,6 @@
 'use strict';
 
-var index = require('./index-DRDL5yMD.js');
+var index = require('./index-dhdeEb65.js');
 
 const wxccAuthDemoWidgetCss = ".frame{position:absolute;z-index:5;height:25vh;background:#ccc;left:20%;top:50%;padding:2em;width:60%}h1{text-align:center}.hidden{display:none}";
 
@@ -75,5 +75,3 @@ wxccAuth.style = wxccAuthDemoWidgetCss;
 
 exports.wxcc_auth_demo_widget = wxccAuth;
 //# sourceMappingURL=wxcc-auth-demo-widget.entry.cjs.js.map
-
-//# sourceMappingURL=wxcc-auth-demo-widget.cjs.entry.js.map

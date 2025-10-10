@@ -1,4 +1,4 @@
-import { r as registerInstance, h, c as createEvent } from './index-Dq4ocYaD.js';
+import { r as registerInstance, h, c as createEvent } from './index-0Cpj1VRy.js';
 
 const wxccAltairCss = "#frame{height:92vh;bottom:0}";
 
@@ -7,7 +7,7 @@ const wxccAltair = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return (h("div", { key: '2c61a09b55eacd0b6bb1038d1edacaf2d14841cc', id: "frame" }, h("iframe", { key: '75b282f3c84c55a971e66401d8fe39d8ec16df24', src: "https://altair-gql.sirmuel.design/", height: "100%", width: "100%", frameborder: "0", loading: "lazy" })));
+        return (h("div", { key: '2c61a09b55eacd0b6bb1038d1edacaf2d14841cc', id: "frame" }, h("iframe", { key: 'c17b812f8c47da10798f0c64c0c47351750123b0', src: "https://webexcc-sa.github.io/tools/gqlWorkbench/altair.html", height: "100%", width: "100%", frameborder: "0", loading: "lazy" })));
     }
 };
 wxccAltair.style = wxccAltairCss;
@@ -70,7 +70,7 @@ const wxccAuth = class {
 };
 wxccAuth.style = wxccAuthWidgetCss;
 
-const wxccGuidePanelCss = "aside{position:fixed;bottom:0;right:-100%;width:40rem;max-width:34%;height:92vh;background:#d6c5c5;box-shadow:0 2px 8px rgba(0, 0, 0, 0.27);transition:right 1.3s ease-out;z-index:2;overflow:scroll}:host([flip]) aside{position:fixed;bottom:0;left:-100%;width:40rem;max-width:34%;height:92vh;background:#d6c5c5;box-shadow:0 2px 8px rgba(0, 0, 0, 0.27);transition:left 1.3s ease-out;z-index:2;overflow:scroll}:host([opened]) aside{right:0}:host([opened][flip]) aside{left:0;}main slot{margin:1rem}.flipper{float:right}.post-header{display:none;}header{display:block;padding:1rem;background:#2196F3;position:fixed;top:8%;width:31.75%}h1.post-title{font-size:1.5rem;color:white;margin:0}.md-content,.post-content{margin:1em}h1{font-size:1.5rem;margin:0}header button{position:absolute;top:0;right:0;padding:1rem;color:white;background:transparent;font-size:1.5rem;border:none}header button:focus{outline:none}#tabs{display:flex;justify-content:center;width:100%;margin:1rem 0;padding-top:4rem}#tabs button{width:30%;background:white;color:black;text-align:center;border:1px solid  #2196F3;font:inherit;padding:0.15rem 0}#tabs :nth-child(1){border-top-left-radius:20px;border-bottom-left-radius:20px}#tabs :nth-last-child(1){border-top-right-radius:20px;border-bottom-right-radius:20px}#tabs button.active,#tabs button:hover,#tabs button:active{background:#2196F3;color:white;border:1px solid #2196F3}#tabs button:focus{outline:none}#contact-information{padding:0 1rem}.md-toggle,.md-header__inner,.md-skip,.md-header--shadow,.md-footer,.md-overlay,.site-header,.site-footer,.book-header,.book-summary,.search-results{display:none}ul.nav{margin:1em;padding:0;list-style:none}li.nav{margin:0.25rem 0;padding:0.25rem;border:1px solid #ccc;cursor:pointer}li.nav:hover,li.nav:active{background:#2196F3;color:white}svg{fill:#c0c0c0;height:20px;width:80px}svg:hover{fill:#f0efef;}.btn{border-radius:30px;padding:5px 10px;border:1px #2196F3}.btn:hover{background:#2196F3;color:white}table td,table th{border:1px solid #404040}table{border-collapse:collapse}";
+const wxccGuidePanelCss = "aside{position:fixed;bottom:0;right:-100%;width:40rem;max-width:34%;height:92vh;background:#d6c5c5;box-shadow:0 2px 8px rgba(0, 0, 0, 0.27);transition:right 1.3s ease-out;z-index:2;overflow:scroll}:host([flip]) aside{position:fixed;bottom:0;left:-100%;width:40rem;max-width:34%;height:92vh;background:#d6c5c5;box-shadow:0 2px 8px rgba(0, 0, 0, 0.27);transition:left 1.3s ease-out;z-index:2;overflow:scroll}:host([opened]) aside{right:0}:host([opened][flip]) aside{left:0;}main slot{margin:1rem}.flipper{float:right}.post-header{display:none;}header{display:block;padding:1rem;background:#2196F3;position:fixed;top:8%;width:31.75%}h1.post-title{font-size:1.5rem;color:white;margin:0}.post-content{margin:1em}h1{font-size:1.5rem;margin:0}header button{position:absolute;top:0;right:0;padding:1rem;color:white;background:transparent;font-size:1.5rem;border:none}header button:focus{outline:none}#tabs{display:flex;justify-content:center;width:100%;margin:1rem 0;padding-top:4rem}#tabs button{width:30%;background:white;color:black;text-align:center;border:1px solid #2196F3;font:inherit;padding:0.15rem 0}#tabs :nth-child(1){border-top-left-radius:20px;border-bottom-left-radius:20px}#tabs :nth-last-child(1){border-top-right-radius:20px;border-bottom-right-radius:20px}#tabs button.active,#tabs button:hover,#tabs button:active{background:#2196F3;color:white;border:1px solid #2196F3}#tabs button:focus{outline:none}#contact-information{padding:0 1rem}.md-toggle,.md-header__inner,.md-skip,.md-header--shadow,.md-footer,.md-overlay,.site-header,.site-footer,.book-header,.book-summary,.search-results{display:none}ul.nav{margin:1em;padding:0;list-style:none}li.nav{margin:0.25rem 0;padding:0.25rem;border:1px solid #ccc;cursor:pointer}li.nav:hover,li.nav:active{background:#2196F3;color:white}svg{fill:#c0c0c0;height:20px;width:80px}svg:hover{fill:#f0efef;}.btn{border-radius:30px;padding:5px 10px;border:1px #2196F3}.btn:hover{background:#2196F3;color:white}table td,table th{border:1px solid #404040}table{border-collapse:collapse}";
 
 const SideDrawer = class {
     constructor(hostRef) {
@@ -357,5 +357,3 @@ wxccVideoModal.style = wxccVideoModalCss;
 
 export { wxccAltair as wxcc_altair, wxccAuth as wxcc_auth_widget, SideDrawer as wxcc_guide_panel, PageControls as wxcc_page_controls, wxccTime as wxcc_time, wxccVideoModal as wxcc_video_modal };
 //# sourceMappingURL=wxcc-altair.wxcc-auth-widget.wxcc-guide-panel.wxcc-page-controls.wxcc-time.wxcc-video-modal.entry.js.map
-
-//# sourceMappingURL=wxcc-altair_6.entry.js.map

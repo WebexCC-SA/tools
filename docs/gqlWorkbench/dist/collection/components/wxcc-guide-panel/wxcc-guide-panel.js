@@ -131,8 +131,8 @@ export class SideDrawer {
                 },
                 "getter": false,
                 "setter": false,
-                "attribute": "arttitle",
-                "reflect": true
+                "reflect": true,
+                "attribute": "arttitle"
             },
             "opened": {
                 "type": "boolean",
@@ -150,8 +150,8 @@ export class SideDrawer {
                 },
                 "getter": false,
                 "setter": false,
-                "attribute": "opened",
-                "reflect": true
+                "reflect": true,
+                "attribute": "opened"
             },
             "flip": {
                 "type": "boolean",
@@ -169,8 +169,8 @@ export class SideDrawer {
                 },
                 "getter": false,
                 "setter": false,
-                "attribute": "flip",
-                "reflect": true
+                "reflect": true,
+                "attribute": "flip"
             },
             "lList": {
                 "type": "string",
@@ -188,8 +188,8 @@ export class SideDrawer {
                 },
                 "getter": false,
                 "setter": false,
-                "attribute": "l-list",
-                "reflect": true
+                "reflect": true,
+                "attribute": "l-list"
             }
         };
     }
