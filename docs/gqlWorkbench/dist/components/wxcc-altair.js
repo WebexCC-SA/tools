@@ -3,16 +3,18 @@ import { proxyCustomElement, HTMLElement, h } from '@stencil/core/internal/clien
 const wxccAltairCss = "#frame{height:92vh;bottom:0}";
 
 const wxccAltair = /*@__PURE__*/ proxyCustomElement(class wxccAltair extends HTMLElement {
-    constructor() {
+    constructor(registerHost) {
         super();
-        this.__registerHost();
+        if (registerHost !== false) {
+            this.__registerHost();
+        }
         this.__attachShadow();
     }
     render() {
-        return (h("div", { key: '2c61a09b55eacd0b6bb1038d1edacaf2d14841cc', id: "frame" }, h("iframe", { key: '75b282f3c84c55a971e66401d8fe39d8ec16df24', src: "https://altair-gql.sirmuel.design/", height: "100%", width: "100%", frameborder: "0", loading: "lazy" })));
+        return (h("div", { key: '2c61a09b55eacd0b6bb1038d1edacaf2d14841cc', id: "frame" }, h("iframe", { key: 'c17b812f8c47da10798f0c64c0c47351750123b0', src: "https://webexcc-sa.github.io/tools/gqlWorkbench/altair.html", height: "100%", width: "100%", frameborder: "0", loading: "lazy" })));
     }
     static get style() { return wxccAltairCss; }
-}, [1, "wxcc-altair"]);
+}, [257, "wxcc-altair"]);
 function defineCustomElement$1() {
     if (typeof customElements === "undefined") {
         return;

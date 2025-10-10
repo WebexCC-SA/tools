@@ -71,8 +71,8 @@ export class wxccVideoModal {
                 },
                 "getter": false,
                 "setter": false,
-                "attribute": "vid-id",
-                "reflect": true
+                "reflect": true,
+                "attribute": "vid-id"
             }
         };
     }

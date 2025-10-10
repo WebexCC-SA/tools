@@ -3,9 +3,11 @@ import { proxyCustomElement, HTMLElement, h } from '@stencil/core/internal/clien
 const wxccAuthWidgetCss = ".frame{position:absolute;z-index:5;height:25vh;background:#ccc;left:20%;top:50%;padding:2em;border-radius:30px}h1{text-align:center}.hidden{display:none}button{cursor:pointer;border-radius:30px;padding:14px 28px;margin:15px;width:20%;font-size:medium}";
 
 const wxccAuth = /*@__PURE__*/ proxyCustomElement(class wxccAuth extends HTMLElement {
-    constructor() {
+    constructor(registerHost) {
         super();
-        this.__registerHost();
+        if (registerHost !== false) {
+            this.__registerHost();
+        }
         this.__attachShadow();
         this.hide = true;
     }
@@ -58,7 +60,7 @@ const wxccAuth = /*@__PURE__*/ proxyCustomElement(class wxccAuth extends HTMLEle
         ];
     }
     static get style() { return wxccAuthWidgetCss; }
-}, [1, "wxcc-auth-widget", {
+}, [257, "wxcc-auth-widget", {
         "callbackUrl": [1, "callback-url"],
         "token": [32],
         "expStamp": [32],

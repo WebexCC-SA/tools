@@ -1,8 +1,8 @@
 const NAMESPACE = 'gql-classroom';
-const BUILD = /* gql-classroom */ { hydratedSelectorName: "hydrated", lazyLoad: true, updatable: true, watchCallback: false };
+const BUILD = /* gql-classroom */ { hydratedSelectorName: "hydrated", lazyLoad: true, propChangeCallback: false, updatable: true};
 
 /*
- Stencil Client Platform v4.28.0 | MIT Licensed | https://stenciljs.com
+ Stencil Client Platform v4.38.0 | MIT Licensed | https://stenciljs.com
  */
 var __defProp = Object.defineProperty;
 var __export = (target, all) => {
@@ -22,6 +22,7 @@ var getHostRef = (ref) => {
   return void 0;
 };
 var registerInstance = (lazyInstance, hostRef) => {
+  if (!hostRef) return;
   lazyInstance.__stencil__getHostRef = () => hostRef;
   hostRef.$lazyInstance$ = lazyInstance;
 };
@@ -30,7 +31,8 @@ var registerHost = (hostElement, cmpMeta) => {
     $flags$: 0,
     $hostElement$: hostElement,
     $cmpMeta$: cmpMeta,
-    $instanceValues$: /* @__PURE__ */ new Map()
+    $instanceValues$: /* @__PURE__ */ new Map(),
+    $serializerValues$: /* @__PURE__ */ new Map()
   };
   {
     hostRef.$onInstancePromise$ = new Promise((r) => hostRef.$onInstanceResolve$ = r);
@@ -39,6 +41,9 @@ var registerHost = (hostElement, cmpMeta) => {
     hostRef.$onReadyPromise$ = new Promise((r) => hostRef.$onReadyResolve$ = r);
     hostElement["s-p"] = [];
     hostElement["s-rc"] = [];
+  }
+  {
+    hostRef.$fetchedCbList$ = [];
   }
   const ref = hostRef;
   hostElement.__stencil__getHostRef = () => ref;
@@ -81,7 +86,6 @@ var loadModule = (cmpMeta, hostRef, hmrVersionId) => {
 
 // src/client/client-style.ts
 var styles = /* @__PURE__ */ new Map();
-var HYDRATED_STYLE_ID = "sty-id";
 var HYDRATED_CSS = "{visibility:hidden}.hydrated{visibility:inherit}";
 var SLOT_FB_CSS = "slot-fb{display:contents}slot-fb[hidden]{display:none}";
 var win = typeof window !== "undefined" ? window : {};
@@ -120,6 +124,7 @@ var supportsConstructableStylesheets = /* @__PURE__ */ (() => {
   }
   return false;
 })() ;
+var supportsMutableAdoptedStyleSheets = supportsConstructableStylesheets ? /* @__PURE__ */ (() => !!win.document && Object.getOwnPropertyDescriptor(win.document.adoptedStyleSheets, "length").writable)() : false;
 var queuePending = false;
 var queueDomReads = [];
 var queueDomWrites = [];
@@ -165,6 +170,11 @@ function queryNonceMetaTagContent(doc) {
   var _a, _b, _c;
   return (_c = (_b = (_a = doc.head) == null ? void 0 : _a.querySelector('meta[name="csp-nonce"]')) == null ? void 0 : _b.getAttribute("content")) != null ? _c : void 0;
 }
+
+// src/utils/regular-expression.ts
+var escapeRegExpSpecialCharacters = (text) => {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+};
 
 // src/utils/result.ts
 var result_exports = {};
@@ -214,6 +224,26 @@ var unwrapErr = (result) => {
     throw result.value;
   }
 };
+
+// src/utils/style.ts
+function createStyleSheetIfNeededAndSupported(styles2) {
+  return void 0;
+}
+
+// src/utils/shadow-root.ts
+var globalStyleSheet;
+function createShadowRoot(cmpMeta) {
+  var _a;
+  const shadowRoot = this.attachShadow({ mode: "open" });
+  if (globalStyleSheet === void 0) globalStyleSheet = (_a = createStyleSheetIfNeededAndSupported()) != null ? _a : null;
+  if (globalStyleSheet) {
+    if (supportsMutableAdoptedStyleSheets) {
+      shadowRoot.adoptedStyleSheets.push(globalStyleSheet);
+    } else {
+      shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, globalStyleSheet];
+    }
+  }
+}
 var createTime = (fnName, tagName = "") => {
   {
     return () => {
@@ -228,6 +258,110 @@ var uniqueTime = (key, measureText) => {
     };
   }
 };
+var rootAppliedStyles = /* @__PURE__ */ new WeakMap();
+var registerStyle = (scopeId2, cssText, allowCS) => {
+  let style = styles.get(scopeId2);
+  if (supportsConstructableStylesheets && allowCS) {
+    style = style || new CSSStyleSheet();
+    if (typeof style === "string") {
+      style = cssText;
+    } else {
+      style.replaceSync(cssText);
+    }
+  } else {
+    style = cssText;
+  }
+  styles.set(scopeId2, style);
+};
+var addStyle = (styleContainerNode, cmpMeta, mode) => {
+  var _a;
+  const scopeId2 = getScopeId(cmpMeta);
+  const style = styles.get(scopeId2);
+  if (!win.document) {
+    return scopeId2;
+  }
+  styleContainerNode = styleContainerNode.nodeType === 11 /* DocumentFragment */ ? styleContainerNode : win.document;
+  if (style) {
+    if (typeof style === "string") {
+      styleContainerNode = styleContainerNode.head || styleContainerNode;
+      let appliedStyles = rootAppliedStyles.get(styleContainerNode);
+      let styleElm;
+      if (!appliedStyles) {
+        rootAppliedStyles.set(styleContainerNode, appliedStyles = /* @__PURE__ */ new Set());
+      }
+      if (!appliedStyles.has(scopeId2)) {
+        {
+          styleElm = win.document.createElement("style");
+          styleElm.innerHTML = style;
+          const nonce = (_a = plt.$nonce$) != null ? _a : queryNonceMetaTagContent(win.document);
+          if (nonce != null) {
+            styleElm.setAttribute("nonce", nonce);
+          }
+          if (!(cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */)) {
+            if (styleContainerNode.nodeName === "HEAD") {
+              const preconnectLinks = styleContainerNode.querySelectorAll("link[rel=preconnect]");
+              const referenceNode2 = preconnectLinks.length > 0 ? preconnectLinks[preconnectLinks.length - 1].nextSibling : styleContainerNode.querySelector("style");
+              styleContainerNode.insertBefore(
+                styleElm,
+                (referenceNode2 == null ? void 0 : referenceNode2.parentNode) === styleContainerNode ? referenceNode2 : null
+              );
+            } else if ("host" in styleContainerNode) {
+              if (supportsConstructableStylesheets) {
+                const stylesheet = new CSSStyleSheet();
+                stylesheet.replaceSync(style);
+                if (supportsMutableAdoptedStyleSheets) {
+                  styleContainerNode.adoptedStyleSheets.unshift(stylesheet);
+                } else {
+                  styleContainerNode.adoptedStyleSheets = [stylesheet, ...styleContainerNode.adoptedStyleSheets];
+                }
+              } else {
+                const existingStyleContainer = styleContainerNode.querySelector("style");
+                if (existingStyleContainer) {
+                  existingStyleContainer.innerHTML = style + existingStyleContainer.innerHTML;
+                } else {
+                  styleContainerNode.prepend(styleElm);
+                }
+              }
+            } else {
+              styleContainerNode.append(styleElm);
+            }
+          }
+          if (cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+            styleContainerNode.insertBefore(styleElm, null);
+          }
+        }
+        if (cmpMeta.$flags$ & 4 /* hasSlotRelocation */) {
+          styleElm.innerHTML += SLOT_FB_CSS;
+        }
+        if (appliedStyles) {
+          appliedStyles.add(scopeId2);
+        }
+      }
+    } else if (!styleContainerNode.adoptedStyleSheets.includes(style)) {
+      if (supportsMutableAdoptedStyleSheets) {
+        styleContainerNode.adoptedStyleSheets.push(style);
+      } else {
+        styleContainerNode.adoptedStyleSheets = [...styleContainerNode.adoptedStyleSheets, style];
+      }
+    }
+  }
+  return scopeId2;
+};
+var attachStyles = (hostRef) => {
+  const cmpMeta = hostRef.$cmpMeta$;
+  const elm = hostRef.$hostElement$;
+  const flags = cmpMeta.$flags$;
+  const endAttachStyles = createTime("attachStyles", cmpMeta.$tagName$);
+  const scopeId2 = addStyle(
+    elm.shadowRoot ? elm.shadowRoot : elm.getRootNode(),
+    cmpMeta);
+  if (flags & 10 /* needsScopedEncapsulation */) {
+    elm["s-sc"] = scopeId2;
+    elm.classList.add(scopeId2 + "-h");
+  }
+  endAttachStyles();
+};
+var getScopeId = (cmp, mode) => "sc-" + (cmp.$tagName$);
 var h = (nodeName, vnodeData, ...children) => {
   let child = null;
   let key = null;
@@ -292,10 +426,24 @@ var newVNode = (tag, text) => {
 };
 var Host = {};
 var isHost = (node) => node && node.$tag$ === Host;
-var parsePropertyValue = (propValue, propType) => {
+var createSupportsRuleRe = (selector) => {
+  const safeSelector2 = escapeRegExpSpecialCharacters(selector);
+  return new RegExp(
+    // First capture group: match any context before the selector that's not inside @supports selector()
+    // Using negative lookahead to avoid matching inside @supports selector(...) condition
+    `(^|[^@]|@(?!supports\\s+selector\\s*\\([^{]*?${safeSelector2}))(${safeSelector2}\\b)`,
+    "g"
+  );
+};
+createSupportsRuleRe("::slotted");
+createSupportsRuleRe(":host");
+createSupportsRuleRe(":host-context");
+var parsePropertyValue = (propValue, propType, isFormAssociated) => {
   if (propValue != null && !isComplexType(propValue)) {
     if (propType & 4 /* Boolean */) {
-      return propValue === "false" ? false : propValue === "" || !!propValue;
+      {
+        return propValue === "false" ? false : propValue === "" || !!propValue;
+      }
     }
     if (propType & 1 /* String */) {
       return String(propValue);
@@ -304,7 +452,10 @@ var parsePropertyValue = (propValue, propType) => {
   }
   return propValue;
 };
-var getElement = (ref) => getHostRef(ref).$hostElement$ ;
+var getElement = (ref) => {
+  var _a;
+  return (_a = getHostRef(ref)) == null ? void 0 : _a.$hostElement$ ;
+};
 
 // src/runtime/event-emitter.ts
 var createEvent = (ref, name, flags) => {
@@ -325,102 +476,6 @@ var emitEvent = (elm, name, opts) => {
   elm.dispatchEvent(ev);
   return ev;
 };
-var rootAppliedStyles = /* @__PURE__ */ new WeakMap();
-var registerStyle = (scopeId2, cssText, allowCS) => {
-  let style = styles.get(scopeId2);
-  if (supportsConstructableStylesheets && allowCS) {
-    style = style || new CSSStyleSheet();
-    if (typeof style === "string") {
-      style = cssText;
-    } else {
-      style.replaceSync(cssText);
-    }
-  } else {
-    style = cssText;
-  }
-  styles.set(scopeId2, style);
-};
-var addStyle = (styleContainerNode, cmpMeta, mode) => {
-  var _a;
-  const scopeId2 = getScopeId(cmpMeta);
-  const style = styles.get(scopeId2);
-  if (!win.document) {
-    return scopeId2;
-  }
-  styleContainerNode = styleContainerNode.nodeType === 11 /* DocumentFragment */ ? styleContainerNode : win.document;
-  if (style) {
-    if (typeof style === "string") {
-      styleContainerNode = styleContainerNode.head || styleContainerNode;
-      let appliedStyles = rootAppliedStyles.get(styleContainerNode);
-      let styleElm;
-      if (!appliedStyles) {
-        rootAppliedStyles.set(styleContainerNode, appliedStyles = /* @__PURE__ */ new Set());
-      }
-      if (!appliedStyles.has(scopeId2)) {
-        {
-          styleElm = document.querySelector(`[${HYDRATED_STYLE_ID}="${scopeId2}"]`) || win.document.createElement("style");
-          styleElm.innerHTML = style;
-          const nonce = (_a = plt.$nonce$) != null ? _a : queryNonceMetaTagContent(win.document);
-          if (nonce != null) {
-            styleElm.setAttribute("nonce", nonce);
-          }
-          if (!(cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */)) {
-            if (styleContainerNode.nodeName === "HEAD") {
-              const preconnectLinks = styleContainerNode.querySelectorAll("link[rel=preconnect]");
-              const referenceNode2 = preconnectLinks.length > 0 ? preconnectLinks[preconnectLinks.length - 1].nextSibling : styleContainerNode.querySelector("style");
-              styleContainerNode.insertBefore(
-                styleElm,
-                (referenceNode2 == null ? void 0 : referenceNode2.parentNode) === styleContainerNode ? referenceNode2 : null
-              );
-            } else if ("host" in styleContainerNode) {
-              if (supportsConstructableStylesheets) {
-                const stylesheet = new CSSStyleSheet();
-                stylesheet.replaceSync(style);
-                styleContainerNode.adoptedStyleSheets = [stylesheet, ...styleContainerNode.adoptedStyleSheets];
-              } else {
-                const existingStyleContainer = styleContainerNode.querySelector("style");
-                if (existingStyleContainer) {
-                  existingStyleContainer.innerHTML = style + existingStyleContainer.innerHTML;
-                } else {
-                  styleContainerNode.prepend(styleElm);
-                }
-              }
-            } else {
-              styleContainerNode.append(styleElm);
-            }
-          }
-          if (cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
-            styleContainerNode.insertBefore(styleElm, null);
-          }
-        }
-        if (cmpMeta.$flags$ & 4 /* hasSlotRelocation */) {
-          styleElm.innerHTML += SLOT_FB_CSS;
-        }
-        if (appliedStyles) {
-          appliedStyles.add(scopeId2);
-        }
-      }
-    } else if (!styleContainerNode.adoptedStyleSheets.includes(style)) {
-      styleContainerNode.adoptedStyleSheets = [...styleContainerNode.adoptedStyleSheets, style];
-    }
-  }
-  return scopeId2;
-};
-var attachStyles = (hostRef) => {
-  const cmpMeta = hostRef.$cmpMeta$;
-  const elm = hostRef.$hostElement$;
-  const flags = cmpMeta.$flags$;
-  const endAttachStyles = createTime("attachStyles", cmpMeta.$tagName$);
-  const scopeId2 = addStyle(
-    elm.shadowRoot ? elm.shadowRoot : elm.getRootNode(),
-    cmpMeta);
-  if ((flags & 10 /* needsScopedEncapsulation */ && flags & 2 /* scopedCssEncapsulation */ || flags & 128 /* shadowNeedsScopedCss */)) {
-    elm["s-sc"] = scopeId2;
-    elm.classList.add(scopeId2 + "-h");
-  }
-  endAttachStyles();
-};
-var getScopeId = (cmp, mode) => "sc-" + (cmp.$tagName$);
 var setAccessor = (elm, memberName, oldValue, newValue, isSvg, flags, initialRender) => {
   if (oldValue === newValue) {
     return;
@@ -738,7 +793,7 @@ var patch = (oldVNode, newVNode2, isInitialRender = false) => {
       !isInitialRender && BUILD.updatable && oldChildren !== null
     ) {
       removeVnodes(oldChildren, 0, oldChildren.length - 1);
-    }
+    } else ;
     if (isSvgMode && tag === "svg") {
       isSvgMode = false;
     }
@@ -761,13 +816,16 @@ var renderVdom = (hostRef, renderFnResults, isInitialLoad = false) => {
   const hostElm = hostRef.$hostElement$;
   const cmpMeta = hostRef.$cmpMeta$;
   const oldVNode = hostRef.$vnode$ || newVNode(null, null);
-  const rootVnode = isHost(renderFnResults) ? renderFnResults : h(null, null, renderFnResults);
+  const isHostElement = isHost(renderFnResults);
+  const rootVnode = isHostElement ? renderFnResults : h(null, null, renderFnResults);
   hostTagName = hostElm.tagName;
   if (cmpMeta.$attrsToReflect$) {
     rootVnode.$attrs$ = rootVnode.$attrs$ || {};
-    cmpMeta.$attrsToReflect$.map(
-      ([propName, attribute]) => rootVnode.$attrs$[attribute] = hostElm[propName]
-    );
+    cmpMeta.$attrsToReflect$.forEach(([propName, attribute]) => {
+      {
+        rootVnode.$attrs$[attribute] = hostElm[propName];
+      }
+    });
   }
   if (isInitialLoad && rootVnode.$attrs$) {
     for (const key of Object.keys(rootVnode.$attrs$)) {
@@ -806,6 +864,12 @@ var scheduleUpdate = (hostRef, isInitialLoad) => {
   }
   attachToAncestor(hostRef, hostRef.$ancestorComponent$);
   const dispatch = () => dispatchHooks(hostRef, isInitialLoad);
+  if (isInitialLoad) {
+    queueMicrotask(() => {
+      dispatch();
+    });
+    return;
+  }
   return writeTask(dispatch) ;
 };
 var dispatchHooks = (hostRef, isInitialLoad) => {
@@ -820,10 +884,15 @@ var dispatchHooks = (hostRef, isInitialLoad) => {
   let maybePromise;
   if (isInitialLoad) {
     {
-      hostRef.$flags$ |= 256 /* isListenReady */;
-      if (hostRef.$queuedListeners$) {
-        hostRef.$queuedListeners$.map(([methodName, event]) => safeCall(instance, methodName, event, elm));
-        hostRef.$queuedListeners$ = void 0;
+      {
+        hostRef.$flags$ |= 256 /* isListenReady */;
+        if (hostRef.$queuedListeners$) {
+          hostRef.$queuedListeners$.map(([methodName, event]) => safeCall(instance, methodName, event, elm));
+          hostRef.$queuedListeners$ = void 0;
+        }
+      }
+      if (hostRef.$fetchedCbList$.length) {
+        hostRef.$fetchedCbList$.forEach((cb) => cb(elm));
       }
     }
     maybePromise = safeCall(instance, "componentWillLoad", void 0, elm);
@@ -951,6 +1020,9 @@ var getValue = (ref, propName) => getHostRef(ref).$instanceValues$.get(propName)
 var setValue = (ref, propName, newVal, cmpMeta) => {
   const hostRef = getHostRef(ref);
   if (!hostRef) {
+    return;
+  }
+  if (!hostRef) {
     throw new Error(
       `Couldn't find host element for "${cmpMeta.$tagName$}" as it is unknown to this Stencil runtime. This usually happens when integrating a 3rd party Stencil component with another Stencil component or application. Please reach out to the maintainers of the 3rd party Stencil component or report this on the Stencil Discord server (https://chat.stenciljs.com) or comment on this similar [GitHub issue](https://github.com/stenciljs/core/issues/5457).`
     );
@@ -958,7 +1030,9 @@ var setValue = (ref, propName, newVal, cmpMeta) => {
   const oldVal = hostRef.$instanceValues$.get(propName);
   const flags = hostRef.$flags$;
   const instance = hostRef.$lazyInstance$ ;
-  newVal = parsePropertyValue(newVal, cmpMeta.$members$[propName][0]);
+  newVal = parsePropertyValue(
+    newVal,
+    cmpMeta.$members$[propName][0]);
   const areBothNaN = Number.isNaN(oldVal) && Number.isNaN(newVal);
   const didValueChange = newVal !== oldVal && !areBothNaN;
   if ((!(flags & 8 /* isConstructingInstance */) || oldVal === void 0) && didValueChange) {
@@ -980,7 +1054,7 @@ var setValue = (ref, propName, newVal, cmpMeta) => {
 var proxyComponent = (Cstr, cmpMeta, flags) => {
   var _a, _b;
   const prototype = Cstr.prototype;
-  if (cmpMeta.$members$ || BUILD.watchCallback) {
+  if (cmpMeta.$members$ || BUILD.propChangeCallback) {
     const members = Object.entries((_a = cmpMeta.$members$) != null ? _a : {});
     members.map(([memberName, [memberFlags]]) => {
       if ((memberFlags & 31 /* Prop */ || (flags & 2 /* proxyState */) && memberFlags & 32 /* State */)) {
@@ -1007,14 +1081,19 @@ var proxyComponent = (Cstr, cmpMeta, flags) => {
         Object.defineProperty(prototype, memberName, {
           set(newValue) {
             const ref = getHostRef(this);
+            if (!ref) {
+              return;
+            }
             if (origSetter) {
               const currentValue = memberFlags & 32 /* State */ ? this[memberName] : ref.$hostElement$[memberName];
               if (typeof currentValue === "undefined" && ref.$instanceValues$.get(memberName)) {
                 newValue = ref.$instanceValues$.get(memberName);
-              } else if (!ref.$instanceValues$.get(memberName) && currentValue) {
-                ref.$instanceValues$.set(memberName, currentValue);
               }
-              origSetter.apply(this, [parsePropertyValue(newValue, memberFlags)]);
+              origSetter.apply(this, [
+                parsePropertyValue(
+                  newValue,
+                  memberFlags)
+              ]);
               newValue = memberFlags & 32 /* State */ ? this[memberName] : ref.$hostElement$[memberName];
               setValue(this, memberName, newValue, cmpMeta);
               return;
@@ -1023,7 +1102,7 @@ var proxyComponent = (Cstr, cmpMeta, flags) => {
               if ((flags & 1 /* isElementConstructor */) === 0 || (cmpMeta.$members$[memberName][0] & 4096 /* Setter */) === 0) {
                 setValue(this, memberName, newValue, cmpMeta);
                 if (flags & 1 /* isElementConstructor */ && !ref.$lazyInstance$) {
-                  ref.$onReadyPromise$.then(() => {
+                  ref.$fetchedCbList$.push(() => {
                     if (cmpMeta.$members$[memberName][0] & 4096 /* Setter */ && ref.$lazyInstance$[memberName] !== ref.$instanceValues$.get(memberName)) {
                       ref.$lazyInstance$[memberName] = newValue;
                     }
@@ -1036,13 +1115,17 @@ var proxyComponent = (Cstr, cmpMeta, flags) => {
                 if (!ref.$instanceValues$.get(memberName) && currentValue) {
                   ref.$instanceValues$.set(memberName, currentValue);
                 }
-                ref.$lazyInstance$[memberName] = parsePropertyValue(newValue, memberFlags);
+                ref.$lazyInstance$[memberName] = parsePropertyValue(
+                  newValue,
+                  memberFlags);
                 setValue(this, memberName, ref.$lazyInstance$[memberName], cmpMeta);
               };
               if (ref.$lazyInstance$) {
                 setterSetVal();
               } else {
-                ref.$onReadyPromise$.then(() => setterSetVal());
+                ref.$fetchedCbList$.push(() => {
+                  setterSetVal();
+                });
               }
             }
           }
@@ -1066,16 +1149,17 @@ var proxyComponent = (Cstr, cmpMeta, flags) => {
         plt.jmp(() => {
           var _a2;
           const propName = attrNameToPropName.get(attrName);
+          const hostRef = getHostRef(this);
           if (this.hasOwnProperty(propName) && BUILD.lazyLoad) {
             newValue = this[propName];
             delete this[propName];
-          } else if (prototype.hasOwnProperty(propName) && typeof this[propName] === "number" && // cast type to number to avoid TS compiler issues
+          }
+          if (prototype.hasOwnProperty(propName) && typeof this[propName] === "number" && // cast type to number to avoid TS compiler issues
           this[propName] == newValue) {
             return;
           } else if (propName == null) {
-            const hostRef = getHostRef(this);
             const flags2 = hostRef == null ? void 0 : hostRef.$flags$;
-            if (flags2 && !(flags2 & 8 /* isConstructingInstance */) && flags2 & 128 /* isWatchReady */ && newValue !== oldValue) {
+            if (hostRef && flags2 && !(flags2 & 8 /* isConstructingInstance */) && flags2 & 128 /* isWatchReady */ && newValue !== oldValue) {
               const instance = hostRef.$lazyInstance$ ;
               const entry = (_a2 = cmpMeta.$watchers$) == null ? void 0 : _a2[attrName];
               entry == null ? void 0 : entry.forEach((callbackName) => {
@@ -1088,7 +1172,7 @@ var proxyComponent = (Cstr, cmpMeta, flags) => {
           }
           const propDesc = Object.getOwnPropertyDescriptor(prototype, propName);
           newValue = newValue === null && typeof this[propName] === "boolean" ? false : newValue;
-          if (newValue !== this[propName] && (!propDesc.get || !!propDesc.set)) {
+          if (newValue != this[propName] && (!propDesc.get || !!propDesc.set)) {
             this[propName] = newValue;
           }
         });
@@ -1096,7 +1180,7 @@ var proxyComponent = (Cstr, cmpMeta, flags) => {
       Cstr.observedAttributes = Array.from(
         /* @__PURE__ */ new Set([
           ...Object.keys((_b = cmpMeta.$watchers$) != null ? _b : {}),
-          ...members.filter(([_, m]) => m[0] & 15 /* HasAttribute */).map(([propName, m]) => {
+          ...members.filter(([_, m]) => m[0] & 31 /* HasAttribute */).map(([propName, m]) => {
             var _a2;
             const attrName = m[1] || propName;
             attrNameToPropName.set(attrName, propName);
@@ -1184,6 +1268,9 @@ var fireConnectedCallback = (instance, elm) => {
 var connectedCallback = (elm) => {
   if ((plt.$flags$ & 1 /* isTmpDisconnected */) === 0) {
     const hostRef = getHostRef(elm);
+    if (!hostRef) {
+      return;
+    }
     const cmpMeta = hostRef.$cmpMeta$;
     const endConnected = createTime("connectedCallback", cmpMeta.$tagName$);
     if (!(hostRef.$flags$ & 1 /* hasConnected */)) {
@@ -1199,7 +1286,7 @@ var connectedCallback = (elm) => {
       }
       if (cmpMeta.$members$) {
         Object.entries(cmpMeta.$members$).map(([memberName, [memberFlags]]) => {
-          if (memberFlags & 31 /* Prop */ && elm.hasOwnProperty(memberName)) {
+          if (memberFlags & 31 /* Prop */ && memberName in elm && elm[memberName] !== Object.prototype[memberName]) {
             const value = elm[memberName];
             delete elm[memberName];
             elm[memberName] = value;
@@ -1229,7 +1316,7 @@ var disconnectedCallback = async (elm) => {
   if ((plt.$flags$ & 1 /* isTmpDisconnected */) === 0) {
     const hostRef = getHostRef(elm);
     {
-      if (hostRef.$rmListeners$) {
+      if (hostRef == null ? void 0 : hostRef.$rmListeners$) {
         hostRef.$rmListeners$.map((rmListener) => rmListener());
         hostRef.$rmListeners$ = void 0;
       }
@@ -1299,9 +1386,7 @@ var bootstrapLazy = (lazyBundles, options = {}) => {
           if (cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
             {
               if (!self.shadowRoot) {
-                {
-                  self.attachShadow({ mode: "open" });
-                }
+                createShadowRoot.call(self, cmpMeta);
               } else {
                 if (self.shadowRoot.mode !== "open") {
                   throw new Error(
@@ -1314,6 +1399,9 @@ var bootstrapLazy = (lazyBundles, options = {}) => {
         }
         connectedCallback() {
           const hostRef = getHostRef(this);
+          if (!hostRef) {
+            return;
+          }
           if (!this.hasRegisteredEventListeners) {
             this.hasRegisteredEventListeners = true;
             addHostEventListeners(this, hostRef, cmpMeta.$listeners$);
@@ -1333,6 +1421,9 @@ var bootstrapLazy = (lazyBundles, options = {}) => {
           plt.raf(() => {
             var _a3;
             const hostRef = getHostRef(this);
+            if (!hostRef) {
+              return;
+            }
             const i2 = deferredConnectedCallbacks.findIndex((host) => host === this);
             if (i2 > -1) {
               deferredConnectedCallbacks.splice(i2, 1);
@@ -1343,7 +1434,8 @@ var bootstrapLazy = (lazyBundles, options = {}) => {
           });
         }
         componentOnReady() {
-          return getHostRef(this).$onReadyPromise$;
+          var _a3;
+          return (_a3 = getHostRef(this)) == null ? void 0 : _a3.$onReadyPromise$;
         }
       };
       cmpMeta.$lazyBundleId$ = lazyBundle[0];
@@ -1422,6 +1514,6 @@ var hostListenerOpts = (flags) => supportsListenerOptions ? {
 var setNonce = (nonce) => plt.$nonce$ = nonce;
 
 export { bootstrapLazy as b, createEvent as c, h, promiseResolve as p, registerInstance as r, setNonce as s };
-//# sourceMappingURL=index-Dq4ocYaD.js.map
+//# sourceMappingURL=index-0Cpj1VRy.js.map
 
-//# sourceMappingURL=index-Dq4ocYaD.js.map
+//# sourceMappingURL=index-0Cpj1VRy.js.map

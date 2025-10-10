@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-Dq4ocYaD.js';
+import { r as registerInstance, h } from './index-0Cpj1VRy.js';
 
 const wxccAuthDemoWidgetCss = ".frame{position:absolute;z-index:5;height:25vh;background:#ccc;left:20%;top:50%;padding:2em;width:60%}h1{text-align:center}.hidden{display:none}";
 
@@ -72,6 +72,4 @@ const wxccAuth = class {
 wxccAuth.style = wxccAuthDemoWidgetCss;
 
 export { wxccAuth as wxcc_auth_demo_widget };
-//# sourceMappingURL=wxcc-auth-demo-widget.entry.js.map
-
 //# sourceMappingURL=wxcc-auth-demo-widget.entry.js.map

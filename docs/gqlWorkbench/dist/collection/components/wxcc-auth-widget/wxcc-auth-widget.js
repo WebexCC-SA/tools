@@ -81,8 +81,8 @@ export class wxccAuth {
                 },
                 "getter": false,
                 "setter": false,
-                "attribute": "callback-url",
-                "reflect": false
+                "reflect": false,
+                "attribute": "callback-url"
             }
         };
     }
